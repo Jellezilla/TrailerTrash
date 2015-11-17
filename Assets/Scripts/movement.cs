@@ -5,7 +5,9 @@ public class movement : MonoBehaviour {
 
 
 	Rigidbody rigid;
-	public float speed = 0.30F;
+	public float speed = 10.0F;
+	public float maxSpeed = 10.0F;
+	public float jumpSpeed = 0.3F;
 	// Use this for initialization
 	void Start () {
 		rigid = transform.GetComponent<Rigidbody> ();
@@ -16,16 +18,24 @@ public class movement : MonoBehaviour {
 
 	}
 	void FixedUpdate() {
-		if(Input.GetKeyDown (KeyCode.LeftArrow)) {
+		if(Input.GetKey (KeyCode.LeftArrow)) {
 			rigid.AddForce(-Vector3.right * speed, ForceMode.Force);
 
 		}
-		if(Input.GetKeyDown (KeyCode.RightArrow)) {
+		if(Input.GetKey (KeyCode.RightArrow)) {
 			rigid.AddForce(Vector3.right * speed, ForceMode.Force);
 		}
 
-		if (Input.GetKeyDown (KeyCode.Return)) {
-			transform.position = new Vector3(0.0F,0.9F,0.0F);
+		if (Input.GetKeyDown (KeyCode.R)) {
+			Application.LoadLevel(Application.loadedLevel);
 		}
+		if (Input.GetKeyDown (KeyCode.Space)) {
+			rigid.AddForce(Vector3.up * jumpSpeed/2, ForceMode.Impulse);
+		}
+		if(rigid.velocity.magnitude > maxSpeed)
+		{
+			rigid.velocity = rigid.velocity.normalized * maxSpeed;
+		}
+		
 	}
 }
