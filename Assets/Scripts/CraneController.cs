@@ -7,15 +7,20 @@ public class CraneController : MonoBehaviour {
 
 	private Rigidbody rigid;
 
-	float maxUpAndDown = 0.01F;             // amount of meters going up and down
-	float speed = 20.0F;
+	public enum CraneType { speedDrop, craneForce };
+	public CraneType craneType;
+	float maxUpAndDown = 0.05F;             // amount of meters going up and down
+	float speed = 100.0F;
 	float maxSpeed = 20.0F;
 	private float angle = 0.0F;
 	private bool active;
+	public int score = 0;
+	public int completedLevel = 20;
 
 	private float toDegrees = Mathf.PI / 180;
 	// Use this for initialization
 	void Start () {
+		score = 0;
 		rigid = transform.GetComponent<Rigidbody> ();
 		rigid.useGravity = false;
 		active = true;
@@ -24,27 +29,47 @@ public class CraneController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.J)) {
-		
-			SpawnNewObject();	
+
+
+		if (craneType == CraneType.craneForce) {
+			if (Input.GetKey (KeyCode.A)) {
+				rigid.AddForce (-Vector3.right * (speed / 3), ForceMode.Force);
+			}
+			if (Input.GetKey (KeyCode.D)) {
+				rigid.AddForce (Vector3.right * (speed / 3), ForceMode.Force);
+			}
 		}
-		if (Input.GetKey (KeyCode.A)) {
-			rigid.AddForce(-Vector3.right * (speed/3), ForceMode.Force);
-		}
-		if (Input.GetKey (KeyCode.D)) {
-			rigid.AddForce(Vector3.right * (speed/3), ForceMode.Force);
+		if (craneType == CraneType.speedDrop) {
+			if (Input.GetKeyDown (KeyCode.J)) {
+			
+				SpawnNewObject ();	
+			}
 		}
 
 	}
 	void FixedUpdate() {
-		if (active)
+
+		
+		if (score >= completedLevel) {
+			WinLevel();
+		}
+
+		#region SpeedDrop
+		if (active && craneType == CraneType.speedDrop)
 		{
 			angle += speed * Time.deltaTime;
 			if (angle > 360) angle -= 360;
 			transform.position = new Vector3(transform.position.x + (maxUpAndDown * Mathf.Cos(angle * toDegrees)), transform.position.y, transform.position.z);
 		}
+		#endregion
+
+		#region craneForce
+		if (active && craneType == CraneType.craneForce)
+		{
 
 
+		}
+		#endregion
 		// restrictions
 		if(rigid.velocity.magnitude > maxSpeed)
 		{
@@ -60,7 +85,7 @@ public class CraneController : MonoBehaviour {
 	void SpawnNewObject() {
 		
 		
-		
+		score++;
 		Vector3 pos = new Vector3 (transform.position.x, 5.0F, 0.0F);
 		//(Instantiate(Cube1, pos, transform.rotation) as GameObject).transform.parent = transform;
 		Instantiate (Cube1, pos, transform.rotation);
@@ -75,5 +100,27 @@ public class CraneController : MonoBehaviour {
 		if (active) {
 			StartCoroutine(SpawnCall(Random.Range (3,5)));
 		}
+	}
+
+	void OnGUI() {
+		GUI.Label (new Rect (15, 15, 150, 25), "Score: " + score.ToString ()+ " / "+completedLevel.ToString());
+
+		// add gui for win feedback -> you've won the level. Level ending in 3.. 2.. 1.. 
+	}
+	void WinLevel() {
+		Debug.Log ("you've completed the level. gz!");
+		StartCoroutine(waitMethod(3.0F));
+	}
+
+	IEnumerator waitMethod(float waitTime) {
+		yield return new WaitForSeconds (waitTime);
+		if (score >= completedLevel) {
+			StartCoroutine (ChangeLevel (Application.loadedLevel + 1));
+		}
+	}
+	IEnumerator ChangeLevel(int level) {
+		float fadeTime = GameObject.Find ("SceneFader").GetComponent<Fading>().BegindFade(1);
+		yield return new WaitForSeconds (fadeTime);
+		Application.LoadLevel (level);
 	}
 }

@@ -16,7 +16,7 @@ public class Truck : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.U)) {
 			active = true;
-			Debug.Log ("fede!");
+
 		}
 		if (active) {
 			BackUp ();
