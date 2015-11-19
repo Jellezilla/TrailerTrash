@@ -2442,9 +2442,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cube1: {fileID: 107856, guid: 0ee81c0d6b5305f41a4e50d496217958, type: 2}
-  craneType: 0
+  craneType: 1
   score: 0
   completedLevel: 20
+  dropDelay: 1.5
 --- !u!54 &1609323168
 Rigidbody:
   m_ObjectHideFlags: 0

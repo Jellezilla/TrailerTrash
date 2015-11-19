@@ -17,6 +17,8 @@ public class CraneController : MonoBehaviour {
 	public int score = 0;
 	public int completedLevel = 20;
 
+	public float dropDelay = 1.5f;
+	private bool dropReady;
 	private float toDegrees = Mathf.PI / 180;
 	// Use this for initialization
 	void Start () {
@@ -25,6 +27,8 @@ public class CraneController : MonoBehaviour {
 		rigid.useGravity = false;
 		active = true;
 		StartCoroutine (SpawnCall (5.0F));
+		dropReady = false;
+		StartCoroutine (SetDropReady (dropDelay));
 	}
 	
 	// Update is called once per frame
@@ -33,16 +37,21 @@ public class CraneController : MonoBehaviour {
 
 		if (craneType == CraneType.craneForce) {
 			if (Input.GetKey (KeyCode.A)) {
-				rigid.AddForce (-Vector3.right * (speed / 3), ForceMode.Force);
+//				rigid.AddForce (-Vector3.right * (speed / 3), ForceMode.Force);
+				transform.position = new Vector3(transform.position.x - 0.051f, transform.position.y, transform.position.z);
 			}
 			if (Input.GetKey (KeyCode.D)) {
-				rigid.AddForce (Vector3.right * (speed / 3), ForceMode.Force);
+//				rigid.AddForce (Vector3.right * (speed / 3), ForceMode.Force);
+				transform.position = new Vector3(transform.position.x +0.051f, transform.position.y, transform.position.z);
 			}
 		}
 		if (craneType == CraneType.speedDrop) {
 			if (Input.GetKeyDown (KeyCode.J)) {
-			
+				Debug.Log ("dropReady: "+dropReady);
+				if(dropReady) {
 				SpawnNewObject ();	
+
+				}
 			}
 		}
 
@@ -66,7 +75,9 @@ public class CraneController : MonoBehaviour {
 		#region craneForce
 		if (active && craneType == CraneType.craneForce)
 		{
-
+			angle += speed * Time.deltaTime;
+			if (angle > 360) angle -= 360;
+			transform.position = new Vector3(transform.position.x + (maxUpAndDown * Mathf.Cos(angle * toDegrees)), transform.position.y, transform.position.z);
 
 		}
 		#endregion
@@ -90,6 +101,12 @@ public class CraneController : MonoBehaviour {
 		//(Instantiate(Cube1, pos, transform.rotation) as GameObject).transform.parent = transform;
 		Instantiate (Cube1, pos, transform.rotation);
 
+		if (active && craneType == CraneType.speedDrop) {
+			dropReady = false;
+			transform.GetComponent<Renderer>().material.color = Color.red;
+			StartCoroutine(SetDropReady(dropDelay));
+			
+		}
 
 	}
 	IEnumerator SpawnCall(float wait) {
@@ -97,9 +114,10 @@ public class CraneController : MonoBehaviour {
 		yield return new WaitForSeconds (wait);
 
 
-		if (active) {
+		if (active && craneType == CraneType.craneForce) {
 			StartCoroutine(SpawnCall(Random.Range (3,5)));
 		}
+
 	}
 
 	void OnGUI() {
@@ -122,5 +140,13 @@ public class CraneController : MonoBehaviour {
 		float fadeTime = GameObject.Find ("SceneFader").GetComponent<Fading>().BegindFade(1);
 		yield return new WaitForSeconds (fadeTime);
 		Application.LoadLevel (level);
+
+
+	}
+	IEnumerator SetDropReady (float dropDelay) {
+		yield return new WaitForSeconds (dropDelay);
+		dropReady = true;
+		transform.GetComponent<Renderer>().material.color = Color.green;
 	}
 }
+
