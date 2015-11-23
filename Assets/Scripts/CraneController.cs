@@ -14,15 +14,19 @@ public class CraneController : MonoBehaviour {
 	float maxSpeed = 20.0F;
 	private float angle = 0.0F;
 	private bool active;
-	public int score = 0;
-	public int completedLevel = 20;
+	public float score = 0.0f;
+	public int completedLevel = 25;
+	TiltSensor ts;
+	GameObject player;
 
 	public float dropDelay = 1.5f;
 	private bool dropReady;
 	private float toDegrees = Mathf.PI / 180;
 	// Use this for initialization
 	void Start () {
-		score = 0;
+		player = GameObject.FindWithTag ("Player");
+		ts = GameObject.FindWithTag ("Platform").GetComponent<TiltSensor> ();
+		score = 0.0f;
 		rigid = transform.GetComponent<Rigidbody> ();
 		rigid.useGravity = false;
 		active = true;
@@ -90,7 +94,7 @@ public class CraneController : MonoBehaviour {
 			transform.position = new Vector3 (-1.42f, transform.position.y, transform.position.z);
 		if (transform.position.x > 1.43f) 
 			transform.position = new Vector3 (1.42f, transform.position.y, transform.position.z);
-		
+
 	}
 
 	void SpawnNewObject() {
@@ -121,15 +125,19 @@ public class CraneController : MonoBehaviour {
 	}
 
 	void OnGUI() {
+		//score = score / (ts.GetTilt() * 100);
 		GUI.Label (new Rect (15, 15, 150, 25), "Score: " + score.ToString ()+ " / "+completedLevel.ToString());
-
+		GUI.Label (new Rect (15, 45, 150, 25), "Level: " + (int)(Application.loadedLevel+1)); 
 		// add gui for win feedback -> you've won the level. Level ending in 3.. 2.. 1.. 
 	}
 	void WinLevel() {
 		Debug.Log ("you've completed the level. gz!");
 		StartCoroutine(waitMethod(3.0F));
 	}
-
+	void LoseLevel() {
+		StartCoroutine (waitMethod (3.0F));
+		StartCoroutine (ChangeLevel (Application.loadedLevel));
+	}
 	IEnumerator waitMethod(float waitTime) {
 		yield return new WaitForSeconds (waitTime);
 		if (score >= completedLevel) {

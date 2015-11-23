@@ -3,12 +3,15 @@ using System.Collections;
 
 public class Truck : MonoBehaviour {
 
+
+	Transform trailer;
 	private float spd = 250.0F;
 	Rigidbody rigid;
 	bool active;
 	// Use this for initialization
 	void Start () {
 		active = false;
+		trailer = GameObject.FindWithTag ("Trailer").transform;
 		rigid = transform.GetComponent<Rigidbody> ();
 	}
 	
@@ -16,12 +19,11 @@ public class Truck : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.U)) {
 			active = true;
-
 		}
 		if (active) {
 			BackUp ();
 		}
-		if (transform.position.x < 4.5f) {
+		if (transform.position.x < 8.5f) {
 			active = false;
 			StartCoroutine(DriveOff());
 		}
@@ -32,16 +34,19 @@ public class Truck : MonoBehaviour {
 			rigid.velocity = rigid.velocity.normalized * spd;
 		}
 	}
-	private void BackUp() {
+	IEnumerator BackUp() {
+		//while (
 		rigid.AddForce (-Vector3.right * spd, ForceMode.Force);
+		yield return null;
 	}
 
 	IEnumerator DriveOff() {
 
-		Transform trailer = GameObject.FindWithTag ("Trailer").transform;
+		
 		trailer.parent = transform;
 
-		while (transform.position.x < 20.0f) {
+
+		while (Vector3.Distance(trailer.position, transform.position) > 50.0f) {    // transform.position.x < 20.0f) {
 			rigid.AddForce(Vector3.right * (spd * 1.5f) , ForceMode.Force);
 			yield return null;	
 		}
