@@ -7,7 +7,7 @@ public class ObjectProperties : MonoBehaviour {
 	public float weight;
 	// Use this for initialization
 	void Start () {
-		ch = GameObject.FindWithTag ("Crane").GetComponent<CraneController> ();
+		//ch = GameObject.FindWithTag ("Crane").GetComponent<CraneController> ();
 	}
 	
 	// Update is called once per frame
@@ -19,7 +19,7 @@ public class ObjectProperties : MonoBehaviour {
 
 		if (transform.position.y < 0.0f) {
 
-			ch.score -= 1;
+			//ch.score -= 1;
 			Destroy(gameObject);
 
 		}
