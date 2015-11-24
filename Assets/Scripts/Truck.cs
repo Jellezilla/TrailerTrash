@@ -5,7 +5,7 @@ public class Truck : MonoBehaviour {
 
 
 	Transform trailer;
-	private float spd = 250.0F;
+	private float spd = 50.0F;
 	Rigidbody rigid;
 	bool active;
 	// Use this for initialization
@@ -21,12 +21,9 @@ public class Truck : MonoBehaviour {
 			active = true;
 		}
 		if (active) {
-			BackUp ();
+			StartCoroutine(StartEngine ());
 		}
-		if (transform.position.x < 8.5f) {
-			active = false;
-			StartCoroutine(DriveOff());
-		}
+		
 	}
 
 	void FixedUpdate() {
@@ -34,21 +31,35 @@ public class Truck : MonoBehaviour {
 			rigid.velocity = rigid.velocity.normalized * spd;
 		}
 	}
+
+
+
+	IEnumerator StartEngine() {
+		yield return StartCoroutine(BackUp ());
+		yield return StartCoroutine(DriveOff());
+
+	}
+
 	IEnumerator BackUp() {
-		//while (
-		rigid.AddForce (-Vector3.right * spd, ForceMode.Force);
-		yield return null;
+		while (Vector3.Distance(trailer.position, transform.position) > 8.0f) {
+			rigid.AddForce(-Vector3.right * 20.0f, ForceMode.Force);
+			//Debug.Log (Vector3.Distance(trailer.position, transform.position));
+	 		yield return null;
+			}
+
 	}
 
 	IEnumerator DriveOff() {
 
-		
+		Debug.Log ("drive off mofo!");
 		trailer.parent = transform;
 
+		active = false;
 
-		while (Vector3.Distance(trailer.position, transform.position) > 50.0f) {    // transform.position.x < 20.0f) {
+		while (transform.position.x < 20.0f) { //Vector3.Distance(trailer.position, transform.position) > 50.0f) {    // 
 			rigid.AddForce(Vector3.right * (spd * 1.5f) , ForceMode.Force);
 			yield return null;	
 		}
 	}
+
 }
