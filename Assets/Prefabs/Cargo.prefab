@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63be0ed81d5a42543aaf317709b0c118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swingPower: 100
+  swingPower: 150
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -157,6 +157,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: swingPower
+      value: 150
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

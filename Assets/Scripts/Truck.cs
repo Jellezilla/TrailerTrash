@@ -21,9 +21,11 @@ public class Truck : MonoBehaviour {
 			active = true;
 		}
 		if (active) {
+			Debug.Log ("active");
 			BackUp ();
 		}
-		if (transform.position.x < 8.5f) {
+		if (transform.position.x < 4.5f) {
+			Debug.Log ("DriveOFF");
 			active = false;
 			StartCoroutine(DriveOff());
 		}
@@ -36,6 +38,7 @@ public class Truck : MonoBehaviour {
 	}
 	IEnumerator BackUp() {
 		//while (
+		Debug.Log ("back up");
 		rigid.AddForce (-Vector3.right * spd, ForceMode.Force);
 		yield return null;
 	}

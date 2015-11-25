@@ -9,7 +9,16 @@ public class CargoSwing : MonoBehaviour
 	void Start () 
 	{
 		Rigidbody rigid = GetComponent<Rigidbody>();
-		rigid.AddForce (transform.forward*swingPower);
+		int num = Random.Range (0,2);
+		if (num == 1) 
+		{
+			rigid.AddForce (transform.forward*swingPower);
+		} 
+		else 
+		{
+			rigid.AddForce (-transform.forward*swingPower);
+		}
+
 	}
 	
 	// Update is called once per frame
