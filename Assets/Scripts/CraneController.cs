@@ -60,9 +60,9 @@ public class CraneController : MonoBehaviour {
 		}
 
 	}
-	void FixedUpdate() {
 
-		
+	void FixedUpdate() 
+	{	
 		if (score >= completedLevel) {
 			WinLevel();
 		}
