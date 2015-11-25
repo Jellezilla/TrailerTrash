@@ -14,23 +14,27 @@ public class LevelTimer : MonoBehaviour {
 		loseScreen = false;
 		winScreen = false;
 	}
-	
-	// Update is called once per frame
+		
+		// Update is called once per frame
 	void Update () {
 		timeLeft -= Time.deltaTime;
 
-		if (timeLeft >= 0) {
-			StartCoroutine(LoseScreen());
+		if (timeLeft <= 0) {
+			timeLeft = 0;
+			StartCoroutine(ChangeLevel(Application.loadedLevel+1));
 		}
 	}
 	void OnGUI() {
 		GUI.Label (new Rect (Screen.width / 2 - 100,15, 200, 25), "Time left: " + (int)timeLeft);  
 		if (loseScreen) {
+
 			// create GUI window.
 		}
 	}
-	IEnumerator LoseScreen() {
-		loseScreen = true;
-		yield return new WaitForSeconds(3.0F);
+
+	IEnumerator ChangeLevel(int level) {
+		float fadeTime = GameObject.Find ("SceneFader").GetComponent<Fading>().BegindFade(1);
+		yield return new WaitForSeconds (fadeTime);
+		Application.LoadLevel (level);
 	}
 }
