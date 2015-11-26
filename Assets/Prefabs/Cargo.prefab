@@ -117,7 +117,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 150710}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 19856a1a278d7fe4aae37251a6db9b25, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -162,6 +162,11 @@ Prefab:
       propertyPath: swingPower
       value: 150
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 19856a1a278d7fe4aae37251a6db9b25,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 150710}
