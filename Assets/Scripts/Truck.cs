@@ -7,7 +7,7 @@ public class Truck : MonoBehaviour {
 	GameObject trailer;
 	private float spd = 20.0F;
 	Rigidbody rigid;
-	bool active;
+	public bool active;
 	Vector3 pos;
 	bool init;
 	// Use this for initialization
@@ -21,6 +21,7 @@ public class Truck : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.U)) {
+
 			active = true;
 		}
 		if (active) {

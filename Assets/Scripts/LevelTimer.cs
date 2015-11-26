@@ -11,7 +11,7 @@ public class LevelTimer : MonoBehaviour {
 	private GameObject scoreUIObject;
 	private GameObject score;
 	private ScoreHandler scoreHandler;
-
+	private Truck truck;
 	private bool timeOut = false;
 
 	// Use this for initialization
@@ -21,7 +21,7 @@ public class LevelTimer : MonoBehaviour {
 		scoreUIObject.GetComponent<Canvas> ().enabled = false;
 		score = GameObject.Find ("Score");
 		scoreHandler = score.GetComponent<ScoreHandler>();
-
+		truck = GameObject.Find ("Truck").GetComponent<Truck> ();
 		timeLeft = maxTime;
 		loseScreen = false;
 		winScreen = false;
@@ -34,6 +34,7 @@ public class LevelTimer : MonoBehaviour {
 		if (timeLeft <= 0) {
 			timeLeft = 0;
 			timeOut = true;
+			truck.active = true;
 			scoreUIObject.GetComponent<Canvas> ().enabled = true;
 			scoreHandler.UpdateCanvas();
 			//StartCoroutine(ChangeLevel());
