@@ -7,9 +7,15 @@ public class CargoController : MonoBehaviour
 	private GameObject currentCargo;
 	private bool waiting = false;
 
+	private GameObject scoreObject;
+	private ScoreHandler scoreHandler;
+
 	// Use this for initialization
 	void Start () 
 	{
+		scoreObject = (GameObject)GameObject.Find ("Score");
+		scoreHandler = scoreObject.GetComponent<ScoreHandler>();
+
 		SpawnCargo ();
 	}
 	
@@ -38,6 +44,8 @@ public class CargoController : MonoBehaviour
 			currentCargo.transform.SetParent (null, true);
 			Destroy(currentCargo.GetComponent<HingeJoint>());
 			StartCoroutine (Wait ());
+			float weight = currentCargo.GetComponent<CargoSwing>().weight;
+			scoreHandler.ChangeWeight(weight);
 		}
 	}
 
