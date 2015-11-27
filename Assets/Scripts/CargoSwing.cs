@@ -8,6 +8,9 @@ public class CargoSwing : MonoBehaviour
 
 	private GameObject scoreObject;
 	private ScoreHandler scoreHandler;
+
+	public bool collidedTrailer = false;
+	public bool collidedGround = false;
 	
 	// Use this for initialization
 	void Start () 
@@ -26,14 +29,23 @@ public class CargoSwing : MonoBehaviour
 			rigid.AddForce (-transform.forward*swingPower);
 		}
 	}
-	
-	// Update is called once per frame
-	void Update () 
-	{
-		if(transform.position.y < 0.5f)
+
+	void OnCollisionEnter(Collision collision) 
+	{	
+		if(collision.gameObject.name == "Cargo(Clone)" && !collidedTrailer) //increase score if first collision
 		{
+			collidedTrailer = true;
+			scoreHandler.ChangeWeight(weight);
+		}
+		if(collision.gameObject.name == "Trailer" && !collidedTrailer) //increase score if first collision
+		{
+			collidedTrailer = true;
+			scoreHandler.ChangeWeight(weight);
+		}
+		if(collision.gameObject.name == "Plane" && !collidedGround && collidedTrailer) //decrase score if first collision
+		{
+			collidedGround = true;
 			scoreHandler.ChangeWeight(-weight);
-			Destroy (gameObject);
 		}
 	}
 }

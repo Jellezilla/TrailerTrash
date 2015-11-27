@@ -10,12 +10,21 @@ public class Truck : MonoBehaviour {
 	public bool active;
 	Vector3 pos;
 	bool init;
+
+	private GameObject scoreUIObject;
+	private GameObject score;
+	private ScoreHandler scoreHandler;
+
 	// Use this for initialization
 	void Start () {
 		active = false;
 		init = true;
 		trailer = GameObject.FindWithTag ("Trailer");
 		rigid = transform.GetComponent<Rigidbody> ();
+
+		scoreUIObject = (GameObject)GameObject.Find ("ScoreUI");
+		score = GameObject.Find ("Score");
+		scoreHandler = score.GetComponent<ScoreHandler>();
 	}
 	
 	// Update is called once per frame
@@ -39,13 +48,14 @@ public class Truck : MonoBehaviour {
 
 
 
-	IEnumerator StartEngine() {
+	IEnumerator StartEngine() 
+	{
 		yield return StartCoroutine(BackUp ());
 		yield return StartCoroutine(DriveOff());
-
 	}
 
-	IEnumerator BackUp() {
+	IEnumerator BackUp() 
+	{
 		Debug.Log ("Back it up!");
 		while (Vector3.Distance(trailer.transform.position, transform.position) > 8.0f) {
 			rigid.AddForce(-Vector3.right * 20.0f, ForceMode.Force);
@@ -77,6 +87,7 @@ public class Truck : MonoBehaviour {
 			//hj2.useSpring = true;
 			//	hj.connectedBody = trailer.GetComponent<Rigidbody> ();
 			hj2.connectedBody = rigid;
+			StartCoroutine (delayScore());
 		}
 
 		Debug.Log ("drive off mofo!");
@@ -96,6 +107,15 @@ public class Truck : MonoBehaviour {
 		yield return new WaitForSeconds (wait);
 		StartCoroutine (testDrive ());
 	}
+
+	IEnumerator delayScore() 
+	{
+		yield return new WaitForSeconds (4.5f);
+		scoreHandler.countChanges = false;
+		scoreUIObject.GetComponent<Canvas> ().enabled = true;
+		scoreHandler.UpdateCanvas();
+	}
+
 	IEnumerator testDrive () {
 		Debug.Log ("testDrive!");
 		rigid.isKinematic = false;

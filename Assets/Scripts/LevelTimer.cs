@@ -6,7 +6,7 @@ public class LevelTimer : MonoBehaviour {
 
 	private bool loseScreen;
 	private bool winScreen;
-	private float maxTime = 45.0f;
+	private float maxTime = 10.0f;
 	private float timeLeft;
 	private GameObject scoreUIObject;
 	private GameObject score;
@@ -35,8 +35,6 @@ public class LevelTimer : MonoBehaviour {
 			timeLeft = 0;
 			timeOut = true;
 			truck.active = true;
-			scoreUIObject.GetComponent<Canvas> ().enabled = true;
-			scoreHandler.UpdateCanvas();
 			//StartCoroutine(ChangeLevel());
 		}
 	}
