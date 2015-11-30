@@ -5,8 +5,8 @@ public class Truck : MonoBehaviour {
 
 
 	GameObject trailer;
-	private float spd = 20.0F;
-	Rigidbody rigid;
+	private float spd = 10.0F;
+//	Rigidbody rigid;
 	public bool active;
 	Vector3 pos;
 	bool init;
@@ -20,7 +20,7 @@ public class Truck : MonoBehaviour {
 		active = false;
 		init = true;
 		trailer = GameObject.FindWithTag ("Trailer");
-		rigid = transform.GetComponent<Rigidbody> ();
+//		rigid = transform.GetComponent<Rigidbody> ();
 
 		scoreUIObject = (GameObject)GameObject.Find ("ScoreUI");
 		score = GameObject.Find ("Score");
@@ -41,9 +41,9 @@ public class Truck : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		if (rigid.velocity.magnitude > spd) {
-			rigid.velocity = rigid.velocity.normalized * spd;
-		}
+//		if (rigid.velocity.magnitude > spd) {
+//			rigid.velocity = rigid.velocity.normalized * spd;
+//		}
 	}
 
 
@@ -53,7 +53,26 @@ public class Truck : MonoBehaviour {
 		yield return StartCoroutine(BackUp ());
 		yield return StartCoroutine(DriveOff());
 	}
+	IEnumerator BackUp() 
+	{
+		while (Vector3.Distance(trailer.transform.position, transform.position) > 8.0f) {
+			transform.position = new Vector3(transform.position.x - 0.005f, transform.position.y, transform.position.z);
+			
+			yield return null;
+		}
+	}
 
+	IEnumerator DriveOff() {
+//		yield return new WaitForSeconds (0.1f);
+		active = false;
+		transform.parent = trailer.transform;
+        Rigidbody rigid =  trailer.GetComponent<Rigidbody> ();
+		while (transform.position.x < 50.0f) {
+			rigid.AddForce (Vector3.right * spd, ForceMode.Force);
+			yield return null;
+		}
+	}
+	/*
 	IEnumerator BackUp() 
 	{
 		while (Vector3.Distance(trailer.transform.position, transform.position) > 8.0f) {
@@ -102,6 +121,7 @@ public class Truck : MonoBehaviour {
 		active = false;
 
 	}
+	*/
 	IEnumerator waitMethod(float wait) {
 		yield return new WaitForSeconds (wait);
 		StartCoroutine (testDrive ());
@@ -117,12 +137,12 @@ public class Truck : MonoBehaviour {
 
 	IEnumerator testDrive () {
 		Debug.Log ("testDrive!");
-		rigid.isKinematic = false;
+		//rigid.isKinematic = false;
 		trailer.GetComponent<Rigidbody> ().isKinematic = false;
 
 		while (transform.position.x < 120.0f) { //Vector3.Distance(trailer.position, transform.position) > 50.0f) {    // 
 
-			rigid.AddForce(Vector3.right * (spd * 0.5f) , ForceMode.Force);
+		//	rigid.AddForce(Vector3.right * (spd * 0.5f) , ForceMode.Force);
 			yield return null;	
 		}
 	}
