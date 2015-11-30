@@ -43,7 +43,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0537c055aecb569488f67ffea59e9c1a, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -51,7 +51,9 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -134,8 +136,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 610d1d2691db5724e95b3a7062e6d7db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  breakable: 0
   swingPower: 130
   weight: 15
+  scoreHandler: {fileID: 0}
   collidedTrailer: 0
   collidedGround: 0
 --- !u!1001 &100100000
@@ -174,6 +178,10 @@ Prefab:
       propertyPath: m_Constraints
       value: 104
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0537c055aecb569488f67ffea59e9c1a, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 150710}
