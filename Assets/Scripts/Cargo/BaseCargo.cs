@@ -13,6 +13,9 @@ public class BaseCargo : MonoBehaviour
 	private GameObject scoreObject;
 	public ScoreHandler scoreHandler;
 
+	private GameObject newCrane;
+	private CargoBag cargoBag;
+
 	public bool collidedTrailer = false;
 	public bool collidedGround = false;
 	
@@ -21,6 +24,9 @@ public class BaseCargo : MonoBehaviour
 	{
 		scoreObject = (GameObject)GameObject.Find ("Score");
 		scoreHandler = scoreObject.GetComponent<ScoreHandler>();
+
+		newCrane = (GameObject)GameObject.Find ("NewCrane");
+		cargoBag = newCrane.GetComponent<CargoBag>();
 
 		Rigidbody rigid = GetComponent<Rigidbody>();
 		int num = Random.Range (0,2);
@@ -40,6 +46,7 @@ public class BaseCargo : MonoBehaviour
 		{
 			collidedTrailer = true;
 			scoreHandler.ChangeWeight(weight);
+			cargoBag.AddCargoAndCheckOrder(gameObject);
 
 			if(gameObject.name == "Iron(Clone)")
 			{
@@ -59,11 +66,13 @@ public class BaseCargo : MonoBehaviour
 		{
 			collidedTrailer = true;
 			scoreHandler.ChangeWeight(weight);
+			cargoBag.AddCargoAndCheckOrder(gameObject);
 		}
 		if(collision.gameObject.name == "Plane" && !collidedGround && collidedTrailer) //decrase score if first collision
 		{
 			collidedGround = true;
 			scoreHandler.ChangeWeight(-weight);
+			cargoBag.RemoveCargo(gameObject);
 		}
 	}
 }

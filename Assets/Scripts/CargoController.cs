@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class CargoController : MonoBehaviour 
 {
+	private CargoBag cargoBag;
+
 	public List<GameObject> cargoList = new List<GameObject>();
 	private GameObject currentCargo;
 	private bool waiting = false;
@@ -14,8 +16,12 @@ public class CargoController : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		cargoBag = GetComponent<CargoBag>();
+
 		scoreObject = (GameObject)GameObject.Find ("Score");
 		scoreHandler = scoreObject.GetComponent<ScoreHandler>();
+
+		cargoBag.ProduceBag ();
 
 		SpawnCargo ();
 	}
@@ -23,7 +29,7 @@ public class CargoController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if(Input.GetKeyDown (KeyCode.C))
+		if(Input.GetKeyDown (KeyCode.Space))
 		{
 			DropCargo();
 		}

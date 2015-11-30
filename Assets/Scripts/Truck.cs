@@ -11,6 +11,7 @@ public class Truck : MonoBehaviour {
 	Vector3 pos;
 	bool init;
 
+	private GameObject onLevelUIObject;
 	private GameObject scoreUIObject;
 	private GameObject score;
 	private ScoreHandler scoreHandler;
@@ -22,6 +23,7 @@ public class Truck : MonoBehaviour {
 		trailer = GameObject.FindWithTag ("Trailer");
 //		rigid = transform.GetComponent<Rigidbody> ();
 		 rigid =  trailer.GetComponent<Rigidbody> ();
+		onLevelUIObject = (GameObject)GameObject.Find ("OnLevelUI");
 		scoreUIObject = (GameObject)GameObject.Find ("ScoreUI");
 		score = GameObject.Find ("Score");
 		scoreHandler = score.GetComponent<ScoreHandler>();
@@ -66,7 +68,8 @@ public class Truck : MonoBehaviour {
 //		yield return new WaitForSeconds (0.1f);
 		active = false;
 		transform.parent = trailer.transform;
-        
+		StartCoroutine (delayScore());
+
 		while (transform.position.x < 50.0f) {
 			rigid.AddForce (Vector3.right * spd, ForceMode.Force);
 			yield return null;
@@ -132,6 +135,7 @@ public class Truck : MonoBehaviour {
 		yield return new WaitForSeconds (4.5f);
 		scoreHandler.countChanges = false;
 		scoreUIObject.GetComponent<Canvas> ().enabled = true;
+		onLevelUIObject.GetComponent<Canvas> ().enabled = false;
 		scoreHandler.UpdateCanvas();
 	}
 

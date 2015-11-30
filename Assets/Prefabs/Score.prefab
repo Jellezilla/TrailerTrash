@@ -39,6 +39,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ba584768b30838489f481c5a0d41113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  countChanges: 1
+  weightGoal: 90
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

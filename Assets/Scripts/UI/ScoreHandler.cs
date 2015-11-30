@@ -103,9 +103,4 @@ public class ScoreHandler : MonoBehaviour
 	{
 		Application.LoadLevel (Application.loadedLevel);
 	}
-
-	public void Work() //restart if failed, continue to next if success
-	{
-		Debug.Log ("Work Work");
-	}
 }
