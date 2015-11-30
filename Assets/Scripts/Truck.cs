@@ -56,7 +56,6 @@ public class Truck : MonoBehaviour {
 
 	IEnumerator BackUp() 
 	{
-		Debug.Log ("Back it up!");
 		while (Vector3.Distance(trailer.transform.position, transform.position) > 8.0f) {
 			rigid.AddForce(-Vector3.right * 20.0f, ForceMode.Force);
 			//Debug.Log (Vector3.Distance(trailer.position, transform.position));
@@ -90,7 +89,7 @@ public class Truck : MonoBehaviour {
 			StartCoroutine (delayScore());
 		}
 
-		Debug.Log ("drive off mofo!");
+
 
 		StartCoroutine (waitMethod(1.0f));
 
