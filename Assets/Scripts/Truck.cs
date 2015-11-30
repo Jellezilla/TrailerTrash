@@ -6,7 +6,7 @@ public class Truck : MonoBehaviour {
 
 	GameObject trailer;
 	private float spd = 10.0F;
-//	Rigidbody rigid;
+	Rigidbody rigid;
 	public bool active;
 	Vector3 pos;
 	bool init;
@@ -21,7 +21,7 @@ public class Truck : MonoBehaviour {
 		init = true;
 		trailer = GameObject.FindWithTag ("Trailer");
 //		rigid = transform.GetComponent<Rigidbody> ();
-
+		 rigid =  trailer.GetComponent<Rigidbody> ();
 		scoreUIObject = (GameObject)GameObject.Find ("ScoreUI");
 		score = GameObject.Find ("Score");
 		scoreHandler = score.GetComponent<ScoreHandler>();
@@ -41,9 +41,9 @@ public class Truck : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-//		if (rigid.velocity.magnitude > spd) {
-//			rigid.velocity = rigid.velocity.normalized * spd;
-//		}
+		if (rigid.velocity.magnitude > spd) {
+			rigid.velocity = rigid.velocity.normalized * spd;
+		}
 	}
 
 
@@ -66,7 +66,7 @@ public class Truck : MonoBehaviour {
 //		yield return new WaitForSeconds (0.1f);
 		active = false;
 		transform.parent = trailer.transform;
-        Rigidbody rigid =  trailer.GetComponent<Rigidbody> ();
+        
 		while (transform.position.x < 50.0f) {
 			rigid.AddForce (Vector3.right * spd, ForceMode.Force);
 			yield return null;
