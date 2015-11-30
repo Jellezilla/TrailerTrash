@@ -15,6 +15,8 @@ public class CargoBag : MonoBehaviour
 	public List<GameObject> bag = new List<GameObject>();
 	public List<GameObject> trailer = new List<GameObject>();
 
+	public List<GameObject> tmpList = new List<GameObject> ();
+
 	void Awake()
 	{
 		cargoController = GetComponent<CargoController>();
@@ -32,19 +34,23 @@ public class CargoBag : MonoBehaviour
 			bag[i] = bag[randomIndex];
 			bag[randomIndex] = temp;
 		}
+
+
+		foreach (GameObject go in order) {
+			tmpList.Add(go);
+		}
 	}
 
 	public void AddCargoAndCheckOrder(GameObject cargo)
 	{
 		trailer.Add (cargo);
-
+		/*
 		bool theSame = true;
 		int i=0;
 		while(i < order.Count)
 		{
 			if(trailer.Contains(order[i]))
 			{
-				// There is a common item so perform the required action.
 				Debug.Log("contained");
 				i++;
 			}
@@ -53,13 +59,26 @@ public class CargoBag : MonoBehaviour
 				Debug.Log("did not contain, so we stop");
 				theSame = false;  
 				break;
-				// We increment the value of i to check for next element from List1.
 			}
 		}
 		if(theSame)
 		{
 			Debug.Log("Mission Completed");
+		}*/
+
+
+		/////
+		// this is the check that needs to run .. often!? 
+		foreach (GameObject go in trailer) {
+			//if(tmpList.Contains(go)) {
+			foreach(GameObject go2 in tmpList) {
+				if(go == go2) {
+					Debug.Log("jeg er her");
+					tmpList.Remove(go);
+				}
+			}
 		}
+		Debug.Log (tmpList.Count);
 	}
 
 	public void RemoveCargo(GameObject cargo)
