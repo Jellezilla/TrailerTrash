@@ -5,7 +5,7 @@ PhysicMaterial:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: noFriction
+  m_Name: Iron
   dynamicFriction: 10
   staticFriction: 10
   bounciness: 0
