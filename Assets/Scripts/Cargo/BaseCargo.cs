@@ -3,11 +3,12 @@ using System.Collections;
 
 public class BaseCargo : MonoBehaviour 
 {
+	public bool breakable;
 	public float swingPower;
 	public float weight = 15f;
 
 	private GameObject scoreObject;
-	private ScoreHandler scoreHandler;
+	public ScoreHandler scoreHandler;
 
 	public bool collidedTrailer = false;
 	public bool collidedGround = false;

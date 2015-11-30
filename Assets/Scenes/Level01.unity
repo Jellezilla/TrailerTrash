@@ -389,6 +389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79b58b9c7a8868845b7fe73675abc6d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxTime: 30
 --- !u!4 &407913651
 Transform:
   m_ObjectHideFlags: 0
@@ -1232,7 +1233,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11477708, guid: 16b2b7c19f8cc184a9720cf90900ae42, type: 2}
       propertyPath: cargoList.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 426334, guid: 16b2b7c19f8cc184a9720cf90900ae42, type: 2}
       propertyPath: m_LocalPosition.x
@@ -1286,6 +1287,10 @@ Prefab:
       propertyPath: cargoList.Array.data[2]
       value: 
       objectReference: {fileID: 150710, guid: a4383846ffeabb14db27c7df6dd87b3e, type: 2}
+    - target: {fileID: 11477708, guid: 16b2b7c19f8cc184a9720cf90900ae42, type: 2}
+      propertyPath: cargoList.Array.data[3]
+      value: 
+      objectReference: {fileID: 150710, guid: 146eb70da197936498d4f5408532d738, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16b2b7c19f8cc184a9720cf90900ae42, type: 2}
   m_IsPrefabParent: 0

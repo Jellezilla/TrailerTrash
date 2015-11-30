@@ -6,7 +6,7 @@ public class LevelTimer : MonoBehaviour {
 
 	private bool loseScreen;
 	private bool winScreen;
-	private float maxTime = 10.0f;
+	public float maxTime = 30.0f;
 	private float timeLeft;
 	private GameObject scoreUIObject;
 	private GameObject score;

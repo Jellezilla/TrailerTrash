@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 610d1d2691db5724e95b3a7062e6d7db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swingPower: 0
+  swingPower: 130
   weight: 15
   collidedTrailer: 0
   collidedGround: 0
