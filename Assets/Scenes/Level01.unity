@@ -1211,6 +1211,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11477708, guid: 16b2b7c19f8cc184a9720cf90900ae42, type: 2}
+      propertyPath: cargoList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 426334, guid: 16b2b7c19f8cc184a9720cf90900ae42, type: 2}
       propertyPath: m_LocalPosition.x
       value: .270000011
@@ -1251,6 +1255,18 @@ Prefab:
       propertyPath: cargoObject
       value: 
       objectReference: {fileID: 150710, guid: 211f5a3156dd6df42be852b18e7434aa, type: 2}
+    - target: {fileID: 11477708, guid: 16b2b7c19f8cc184a9720cf90900ae42, type: 2}
+      propertyPath: cargoList.Array.data[0]
+      value: 
+      objectReference: {fileID: 150710, guid: 6b0f73bcbf4524840bd9cb9310e4228d, type: 2}
+    - target: {fileID: 11477708, guid: 16b2b7c19f8cc184a9720cf90900ae42, type: 2}
+      propertyPath: cargoList.Array.data[1]
+      value: 
+      objectReference: {fileID: 150710, guid: 211f5a3156dd6df42be852b18e7434aa, type: 2}
+    - target: {fileID: 11477708, guid: 16b2b7c19f8cc184a9720cf90900ae42, type: 2}
+      propertyPath: cargoList.Array.data[2]
+      value: 
+      objectReference: {fileID: 150710, guid: a4383846ffeabb14db27c7df6dd87b3e, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16b2b7c19f8cc184a9720cf90900ae42, type: 2}
   m_IsPrefabParent: 0

@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CargoController : MonoBehaviour 
 {
+	public List<GameObject> cargoList = new List<GameObject>();
 	public GameObject cargoObject;
 	private GameObject currentCargo;
 	private bool waiting = false;

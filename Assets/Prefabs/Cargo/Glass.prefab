@@ -11,11 +11,11 @@ GameObject:
   - 33: {fileID: 3381460}
   - 65: {fileID: 6557806}
   - 23: {fileID: 2353124}
-  - 114: {fileID: 11493750}
   - 54: {fileID: 5462762}
   - 59: {fileID: 5943294}
+  - 114: {fileID: 11406150}
   m_Layer: 0
-  m_Name: Cargo
+  m_Name: Glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,7 +123,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &11493750
+--- !u!114 &11406150
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -131,11 +131,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 150710}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63be0ed81d5a42543aaf317709b0c118, type: 3}
+  m_Script: {fileID: 11500000, guid: 610d1d2691db5724e95b3a7062e6d7db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swingPower: 150
+  swingPower: 0
   weight: 15
+  collidedTrailer: 0
+  collidedGround: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -161,7 +163,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: swingPower
-      value: 150
+      value: 130
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Material

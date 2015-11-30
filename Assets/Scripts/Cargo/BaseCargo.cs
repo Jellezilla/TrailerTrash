@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CargoSwing : MonoBehaviour 
+public class BaseCargo : MonoBehaviour 
 {
 	public float swingPower;
 	public float weight = 15f;
@@ -30,8 +30,8 @@ public class CargoSwing : MonoBehaviour
 		}
 	}
 
-	void OnCollisionEnter(Collision collision) 
-	{	
+	public void CollisionHandler(Collision collision)
+	{
 		if(collision.gameObject.name == "Cargo(Clone)" && !collidedTrailer) //increase score if first collision
 		{
 			collidedTrailer = true;
