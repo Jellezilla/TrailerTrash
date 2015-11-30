@@ -10,7 +10,6 @@ public class Drugs : BaseCargo
 
 	void OnCollisionEnter(Collision collision)
 	{	
-		Debug.Log ("This is Drugs colliding!");
 		base.CollisionHandler (collision);
 	}
 }

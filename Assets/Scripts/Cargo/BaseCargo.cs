@@ -3,6 +3,9 @@ using System.Collections;
 
 public class BaseCargo : MonoBehaviour 
 {
+	public int cargoHealth;
+	private bool cracked;
+
 	public bool breakable;
 	public float swingPower;
 	public float weight = 15f;
@@ -33,10 +36,24 @@ public class BaseCargo : MonoBehaviour
 
 	public void CollisionHandler(Collision collision)
 	{
-		if(collision.gameObject.name == "Cargo(Clone)" && !collidedTrailer) //increase score if first collision
+		if(collision.gameObject.tag == "Cargo" && !collidedTrailer) //increase score if first collision
 		{
 			collidedTrailer = true;
 			scoreHandler.ChangeWeight(weight);
+
+			if(gameObject.name == "Iron(Clone)")
+			{
+				BaseCargo other = collision.gameObject.GetComponent<BaseCargo>();
+				if(other.cracked)
+				{
+					Destroy (other.gameObject);
+				}
+				other.cargoHealth--;
+				if(other.cargoHealth <= 0)
+				{
+					other.cracked = true;
+				}
+			}
 		}
 		if(collision.gameObject.name == "Trailer" && !collidedTrailer) //increase score if first collision
 		{

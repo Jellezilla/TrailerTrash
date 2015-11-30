@@ -7,6 +7,7 @@ TagManager:
   - Trailer
   - Crane
   - Platform
+  - Cargo
   layers:
   - Default
   - TransparentFX

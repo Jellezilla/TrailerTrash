@@ -10,7 +10,6 @@ public class Iron : BaseCargo
 
 	void OnCollisionEnter(Collision collision)
 	{	
-		Debug.Log ("This is Iron colliding!");
 		base.CollisionHandler (collision);
 	}
 }

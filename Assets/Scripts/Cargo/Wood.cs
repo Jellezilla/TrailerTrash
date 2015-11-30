@@ -10,7 +10,6 @@ public class Wood : BaseCargo
 
 	void OnCollisionEnter(Collision collision)
 	{	
-		Debug.Log ("This is Wood colliding!");
 		base.CollisionHandler (collision);
 	}
 }

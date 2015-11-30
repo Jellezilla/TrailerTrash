@@ -10,7 +10,6 @@ public class Glass : BaseCargo
 
 	void OnCollisionEnter(Collision collision)
 	{	
-		Debug.Log ("This is Glass colliding!");
-		Destroy (gameObject);
+		//Destroy (gameObject);
 	}
 }
