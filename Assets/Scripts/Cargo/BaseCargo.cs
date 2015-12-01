@@ -48,6 +48,7 @@ public class BaseCargo : MonoBehaviour
 				BaseCargo other = collision.gameObject.GetComponent<BaseCargo>();
 				if(other.cracked)
 				{
+					cargoBag.RemoveCargo(other.gameObject);
 					Destroy (other.gameObject);
 				}
 				other.cargoHealth--;
