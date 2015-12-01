@@ -7,6 +7,9 @@ public class CargoBag : MonoBehaviour
 	GameObject truckObject;
 	Truck truck;
 
+	private GameObject OnLevelUIObject;
+	private OnLevelUI OnLevelUI;
+
 	private CargoController cargoController;
 	public int extraCargo;
 
@@ -27,6 +30,9 @@ public class CargoBag : MonoBehaviour
 	{
 		truckObject = GameObject.Find ("Truck");
 		truck = truckObject.GetComponent<Truck>();
+
+		OnLevelUIObject = (GameObject)GameObject.Find ("OnLevelUI");
+		OnLevelUI = OnLevelUIObject.GetComponent<OnLevelUI>();
 
 		cargoController = GetComponent<CargoController>();
 	}
@@ -59,6 +65,7 @@ public class CargoBag : MonoBehaviour
 	public void AddCargoAndCheckOrder(GameObject cargo)
 	{
 		trailer.Add (cargo);
+		InspectTrailer ();
 
 		tmpTrailer = new List<GameObject> ();
 
@@ -86,12 +93,37 @@ public class CargoBag : MonoBehaviour
 		} 
 	}
 
+	private void InspectTrailer()
+	{
+		//how many wood/Iron/Glass are there, update UI
+		int wood = 0;
+		int iron = 0;
+		int glass = 0;
+
+		foreach(GameObject cargo in trailer)
+		{
+			if(cargo.name.Contains("Wood"))
+			{
+				wood++;
+			}
+			else if(cargo.name.Contains("Iron"))
+			{
+				iron++;
+			}
+			else if(cargo.name.Contains("Glass"))
+			{
+				glass++;
+			}
+		}
+		OnLevelUI.WriteOrder(wood, woodOrder,iron, ironOrder, glass, glassOrder);
+	}
+
 	public void RemoveCargo(GameObject cargo)
 	{
 		if(trailer.Contains(cargo))
 		{
-			Debug.Log("was on trailer, so we remove it");
 			trailer.Remove(cargo);
+			InspectTrailer();
 		}
 	}
 

@@ -18,6 +18,15 @@ public class OnLevelUI : MonoBehaviour
 	GameObject cargoImageObject;
 	Image cargoImage;
 
+	GameObject woodObject;
+	Text wood;
+
+	GameObject ironObject;
+	Text iron;
+
+	GameObject glassObject;
+	Text glass;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -27,6 +36,15 @@ public class OnLevelUI : MonoBehaviour
 
 		nextObject = GameObject.Find ("Next");
 		next = nextObject.GetComponent<Text>();
+
+		woodObject = GameObject.Find ("Wood");
+		wood = woodObject.GetComponent<Text> ();
+		
+		ironObject = GameObject.Find ("Iron");
+		iron = ironObject.GetComponent<Text>();
+		
+		glassObject = GameObject.Find ("Glass");
+		glass = glassObject.GetComponent<Text>();
 
 		cargoImageObject = GameObject.Find ("CargoImage");
 		cargoImage = cargoImageObject.GetComponent<Image>();
@@ -53,5 +71,13 @@ public class OnLevelUI : MonoBehaviour
 		next.text = cargo.name;
 		BaseCargo baseCargo = cargo.GetComponent<BaseCargo>();
 		cargoImage.sprite = baseCargo.UISprite;
+	}
+
+	public void WriteOrder(int woodNum, int woodOrder, int ironNum, int ironOrder, int glassNum, int glassOrder)
+	{
+		wood.text = woodNum.ToString () + "/" + woodOrder.ToString ();
+		iron.text = ironNum.ToString () + "/" + ironOrder.ToString ();
+		glass.text = glassNum.ToString () + "/" + glassOrder.ToString ();
+
 	}
 }
