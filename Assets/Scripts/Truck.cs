@@ -5,7 +5,7 @@ public class Truck : MonoBehaviour {
 
 
 	GameObject trailer;
-	private float spd = 10.0F;
+	private float spd = 30.0F;
 	Rigidbody rigid;
 	public bool active;
 	Vector3 pos;

@@ -67,6 +67,7 @@ public class BaseCargo : MonoBehaviour
 		{
 			collidedGround = true;
 			cargoBag.RemoveCargo(gameObject);
+			Destroy (gameObject);
 		}
 	}
 }
