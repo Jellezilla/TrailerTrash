@@ -51,9 +51,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -140,9 +138,9 @@ MonoBehaviour:
   breakable: 0
   swingPower: 130
   weight: 15
-  scoreHandler: {fileID: 0}
   collidedTrailer: 0
   collidedGround: 0
+  UISprite: {fileID: 21300000, guid: 7be59f8395b1a48a08d7ab000f8f2292, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -203,6 +201,11 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: .600000024
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: UISprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7be59f8395b1a48a08d7ab000f8f2292,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 150710}

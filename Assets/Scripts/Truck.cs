@@ -12,9 +12,6 @@ public class Truck : MonoBehaviour {
 	bool init;
 
 	private GameObject onLevelUIObject;
-	private GameObject scoreUIObject;
-	private GameObject score;
-	private ScoreHandler scoreHandler;
 
 	// Use this for initialization
 	void Start () {
@@ -24,9 +21,6 @@ public class Truck : MonoBehaviour {
 //		rigid = transform.GetComponent<Rigidbody> ();
 		 rigid =  trailer.GetComponent<Rigidbody> ();
 		onLevelUIObject = (GameObject)GameObject.Find ("OnLevelUI");
-		scoreUIObject = (GameObject)GameObject.Find ("ScoreUI");
-		score = GameObject.Find ("Score");
-		scoreHandler = score.GetComponent<ScoreHandler>();
 	}
 	
 	// Update is called once per frame
@@ -40,6 +34,11 @@ public class Truck : MonoBehaviour {
 		}
 //		Debug.Log (rigid.velocity.magnitude);
 		
+	}
+
+	public void SetActive()
+	{
+		active = true;
 	}
 
 	void FixedUpdate() {
@@ -133,10 +132,7 @@ public class Truck : MonoBehaviour {
 	IEnumerator delayScore() 
 	{
 		yield return new WaitForSeconds (4.5f);
-		scoreHandler.countChanges = false;
-		scoreUIObject.GetComponent<Canvas> ().enabled = true;
 		onLevelUIObject.GetComponent<Canvas> ().enabled = false;
-		scoreHandler.UpdateCanvas();
 	}
 
 	IEnumerator testDrive () {

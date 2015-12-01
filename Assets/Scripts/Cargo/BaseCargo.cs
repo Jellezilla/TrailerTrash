@@ -10,21 +10,17 @@ public class BaseCargo : MonoBehaviour
 	public float swingPower;
 	public float weight = 15f;
 
-	private GameObject scoreObject;
-	public ScoreHandler scoreHandler;
-
 	private GameObject newCrane;
 	private CargoBag cargoBag;
 
 	public bool collidedTrailer = false;
 	public bool collidedGround = false;
+
+	public Sprite UISprite;
 	
 	// Use this for initialization
 	void Start () 
 	{
-		scoreObject = (GameObject)GameObject.Find ("Score");
-		scoreHandler = scoreObject.GetComponent<ScoreHandler>();
-
 		newCrane = (GameObject)GameObject.Find ("NewCrane");
 		cargoBag = newCrane.GetComponent<CargoBag>();
 
@@ -45,7 +41,6 @@ public class BaseCargo : MonoBehaviour
 		if(collision.gameObject.tag == "Cargo" && !collidedTrailer) //increase score if first collision
 		{
 			collidedTrailer = true;
-			scoreHandler.ChangeWeight(weight);
 			cargoBag.AddCargoAndCheckOrder(gameObject);
 
 			if(gameObject.name == "Iron(Clone)")
@@ -65,13 +60,11 @@ public class BaseCargo : MonoBehaviour
 		if(collision.gameObject.name == "Trailer" && !collidedTrailer) //increase score if first collision
 		{
 			collidedTrailer = true;
-			scoreHandler.ChangeWeight(weight);
 			cargoBag.AddCargoAndCheckOrder(gameObject);
 		}
 		if(collision.gameObject.name == "Plane" && !collidedGround && collidedTrailer) //decrase score if first collision
 		{
 			collidedGround = true;
-			scoreHandler.ChangeWeight(-weight);
 			cargoBag.RemoveCargo(gameObject);
 		}
 	}

@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public class CargoBag : MonoBehaviour 
 {
+	GameObject truckObject;
+	Truck truck;
+
 	private CargoController cargoController;
 	public int extraCargo;
 
@@ -11,14 +14,20 @@ public class CargoBag : MonoBehaviour
 	public int woodOrder;
 	public int glassOrder;
 
+	private int bagIndex = 0;
+
 	public List<GameObject> order = new List<GameObject>();
 	public List<GameObject> bag = new List<GameObject>();
-	public List<GameObject> trailer = new List<GameObject>();
 
-	public List<GameObject> tmpList = new List<GameObject> ();
+	private List<GameObject> trailer = new List<GameObject>();
+
+	public List<GameObject> tmpTrailer = new List<GameObject> ();
 
 	void Awake()
 	{
+		truckObject = GameObject.Find ("Truck");
+		truck = truckObject.GetComponent<Truck>();
+
 		cargoController = GetComponent<CargoController>();
 	}
 
@@ -34,51 +43,47 @@ public class CargoBag : MonoBehaviour
 			bag[i] = bag[randomIndex];
 			bag[randomIndex] = temp;
 		}
+	}
 
-
-		foreach (GameObject go in order) {
-			tmpList.Add(go);
+	public GameObject GetNextCargo()
+	{
+		GameObject cargo = bag [bagIndex];
+		bagIndex++;
+		if(bagIndex > bag.Count-1)
+		{
+			bagIndex = 0;
 		}
+		return cargo;
 	}
 
 	public void AddCargoAndCheckOrder(GameObject cargo)
 	{
 		trailer.Add (cargo);
-		/*
-		bool theSame = true;
-		int i=0;
-		while(i < order.Count)
+
+		tmpTrailer = new List<GameObject> ();
+
+		foreach (GameObject go in trailer)
 		{
-			if(trailer.Contains(order[i]))
-			{
-				Debug.Log("contained");
-				i++;
-			}
-			else
-			{
-				Debug.Log("did not contain, so we stop");
-				theSame = false;  
-				break;
-			}
+			tmpTrailer.Add(go);
 		}
-		if(theSame)
+
+		int found = 0;
+		foreach(GameObject go in order)
 		{
-			Debug.Log("Mission Completed");
-		}*/
-
-
-		/////
-		// this is the check that needs to run .. often!? 
-		foreach (GameObject go in trailer) {
-			//if(tmpList.Contains(go)) {
-			foreach(GameObject go2 in tmpList) {
-				if(go == go2) {
-					Debug.Log("jeg er her");
-					tmpList.Remove(go);
+			foreach(GameObject go2 in tmpTrailer)
+			{
+				if(go2.name.Contains(go.name))
+				{
+					found++;
+					tmpTrailer.Remove(go2);
+					break;
 				}
 			}
 		}
-		Debug.Log (tmpList.Count);
+		if (found == order.Count)
+		{
+			truck.SetActive();
+		} 
 	}
 
 	public void RemoveCargo(GameObject cargo)
