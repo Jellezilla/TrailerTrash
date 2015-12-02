@@ -35,6 +35,8 @@ public class CargoBag : MonoBehaviour
 		OnLevelUI = OnLevelUIObject.GetComponent<OnLevelUI>();
 
 		cargoController = GetComponent<CargoController>();
+
+		InspectTrailer ();
 	}
 
 	public void ProduceBag()
@@ -163,5 +165,6 @@ public class CargoBag : MonoBehaviour
 				bag.Add(cargoController.cargoList[2]);
 			}
 		}
+		bag.Add(cargoController.cargoList[3]);
 	}
 }

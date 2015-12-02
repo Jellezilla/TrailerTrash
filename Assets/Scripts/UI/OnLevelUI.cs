@@ -28,7 +28,7 @@ public class OnLevelUI : MonoBehaviour
 	Text glass;
 
 	// Use this for initialization
-	void Start () 
+	void Awake () 
 	{
 		//fields
 		timeObject = GameObject.Find ("Time");

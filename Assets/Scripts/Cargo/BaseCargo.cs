@@ -11,7 +11,7 @@ public class BaseCargo : MonoBehaviour
 	public float weight = 15f;
 
 	private GameObject newCrane;
-	private CargoBag cargoBag;
+	public CargoBag cargoBag;
 
 	public bool collidedTrailer = false;
 	public bool collidedGround = false;
