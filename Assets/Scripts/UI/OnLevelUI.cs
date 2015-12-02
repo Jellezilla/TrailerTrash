@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 public class OnLevelUI : MonoBehaviour 
 {
+	private GameObject endLevelUI;
+	private LevelEndUI levelEndUI;
+
 	public float maxTime = 30.0f;
 	private float timeLeft;
 	private Truck truck;
@@ -30,6 +33,9 @@ public class OnLevelUI : MonoBehaviour
 	// Use this for initialization
 	void Awake () 
 	{
+		endLevelUI = GameObject.Find ("LevelEndUI");
+		levelEndUI = endLevelUI.GetComponent<LevelEndUI>();
+
 		//fields
 		timeObject = GameObject.Find ("Time");
 		time = timeObject.GetComponent<Text>();
@@ -62,6 +68,8 @@ public class OnLevelUI : MonoBehaviour
 		{
 			timeLeft = 0;
 			truck.active = true;
+			levelEndUI.SetEndUI(false);
+
 		}
 		time.text = Mathf.Ceil(timeLeft).ToString ();
 	}

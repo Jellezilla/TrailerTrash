@@ -12,6 +12,8 @@ public class Truck : MonoBehaviour {
 	bool init;
 
 	private GameObject onLevelUIObject;
+	private GameObject endLevelUIObject;
+	private LevelEndUI levelEndUI;
 
 	// Use this for initialization
 	void Start () {
@@ -21,6 +23,8 @@ public class Truck : MonoBehaviour {
 //		rigid = transform.GetComponent<Rigidbody> ();
 		 rigid =  trailer.GetComponent<Rigidbody> ();
 		onLevelUIObject = (GameObject)GameObject.Find ("OnLevelUI");
+		endLevelUIObject = (GameObject)GameObject.Find ("LevelEndUI");
+		levelEndUI = endLevelUIObject.GetComponent<LevelEndUI>();
 	}
 	
 	// Update is called once per frame
@@ -131,8 +135,9 @@ public class Truck : MonoBehaviour {
 
 	IEnumerator delayScore() 
 	{
-		yield return new WaitForSeconds (4.5f);
+		yield return new WaitForSeconds (2);
 		onLevelUIObject.GetComponent<Canvas> ().enabled = false;
+		//levelEndUI.GetComponent<Canvas> ().enabled = true;
 	}
 
 	IEnumerator testDrive () {
