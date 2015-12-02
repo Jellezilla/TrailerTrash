@@ -2950,7 +2950,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11431886, guid: afcd68a043b36674b8f19dba16ebf425, type: 2}
       propertyPath: maxTime
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 11480198, guid: afcd68a043b36674b8f19dba16ebf425, type: 2}
       propertyPath: m_FontData.m_Font
@@ -3009,6 +3009,14 @@ Prefab:
     - target: {fileID: 11468422, guid: afcd68a043b36674b8f19dba16ebf425, type: 2}
       propertyPath: m_Text
       value: 'Next :'
+      objectReference: {fileID: 0}
+    - target: {fileID: 22444042, guid: afcd68a043b36674b8f19dba16ebf425, type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 56
+      objectReference: {fileID: 0}
+    - target: {fileID: 22428416, guid: afcd68a043b36674b8f19dba16ebf425, type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 23
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: afcd68a043b36674b8f19dba16ebf425, type: 2}
@@ -3233,7 +3241,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!1 &1894808707
 GameObject:
   m_ObjectHideFlags: 0
