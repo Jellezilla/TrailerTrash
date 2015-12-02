@@ -91,7 +91,7 @@ public class CargoBag : MonoBehaviour
 		}
 		if (found == order.Count)
 		{
-			truck.SetActive();
+			truck.SetActive(true);
 		} 
 	}
 

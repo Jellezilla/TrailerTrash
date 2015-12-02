@@ -4,11 +4,11 @@ using UnityEngine.UI;
 
 public class OnLevelUI : MonoBehaviour 
 {
-	private GameObject endLevelUI;
-	private LevelEndUI levelEndUI;
+	private GameObject missionWinObject;
+	private MissionWinUI missionWinUI;
 
 	public float maxTime = 30.0f;
-	private float timeLeft;
+	public float timeLeft;
 	private Truck truck;
 
 	//fields
@@ -33,8 +33,8 @@ public class OnLevelUI : MonoBehaviour
 	// Use this for initialization
 	void Awake () 
 	{
-		endLevelUI = GameObject.Find ("LevelEndUI");
-		levelEndUI = endLevelUI.GetComponent<LevelEndUI>();
+		missionWinObject = GameObject.Find ("MissionWinUI");
+		missionWinUI = missionWinObject.GetComponent<MissionWinUI>();
 
 		//fields
 		timeObject = GameObject.Find ("Time");
@@ -67,9 +67,7 @@ public class OnLevelUI : MonoBehaviour
 		if (timeLeft <= 0) 
 		{
 			timeLeft = 0;
-			truck.active = true;
-			levelEndUI.SetEndUI(false);
-
+			truck.SetActive(false);
 		}
 		time.text = Mathf.Ceil(timeLeft).ToString ();
 	}

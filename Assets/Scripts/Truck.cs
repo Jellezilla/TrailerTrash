@@ -11,9 +11,16 @@ public class Truck : MonoBehaviour {
 	Vector3 pos;
 	bool init;
 
+	bool win;
+	bool firstDriveOff = true;
+
 	private GameObject onLevelUIObject;
-	private GameObject endLevelUIObject;
-	private LevelEndUI levelEndUI;
+	private GameObject missionWinObject;
+	private GameObject missionLoseObject;
+	private MissionWinUI missionWinUI;
+	private MissionLoseUI missionLoseUI;
+
+	private OnLevelUI onLevelUI;
 
 	// Use this for initialization
 	void Start () {
@@ -22,9 +29,12 @@ public class Truck : MonoBehaviour {
 		trailer = GameObject.FindWithTag ("Trailer");
 //		rigid = transform.GetComponent<Rigidbody> ();
 		 rigid =  trailer.GetComponent<Rigidbody> ();
-		onLevelUIObject = (GameObject)GameObject.Find ("OnLevelUI");
-		endLevelUIObject = (GameObject)GameObject.Find ("LevelEndUI");
-		levelEndUI = endLevelUIObject.GetComponent<LevelEndUI>();
+		onLevelUIObject = GameObject.Find ("OnLevelUI");
+		onLevelUI = onLevelUIObject.GetComponent<OnLevelUI>();
+		missionWinObject = GameObject.Find ("MissionWinUI");
+		missionWinUI = missionWinObject.GetComponent<MissionWinUI>();
+		missionLoseObject = GameObject.Find ("MissionLoseUI");
+		missionLoseUI = missionLoseObject.GetComponent<MissionLoseUI>();
 	}
 	
 	// Update is called once per frame
@@ -40,9 +50,10 @@ public class Truck : MonoBehaviour {
 		
 	}
 
-	public void SetActive()
+	public void SetActive(bool state)
 	{
 		active = true;
+		win = state;
 	}
 
 	void FixedUpdate() {
@@ -71,7 +82,12 @@ public class Truck : MonoBehaviour {
 //		yield return new WaitForSeconds (0.1f);
 		active = false;
 		transform.parent = trailer.transform;
-		StartCoroutine (delayScore());
+
+		if(firstDriveOff)
+		{
+			firstDriveOff = false;
+			StartCoroutine (delayScore());
+		}
 
 		while (transform.position.x < 50.0f) {
 			rigid.AddForce (Vector3.right * spd, ForceMode.Force);
@@ -137,7 +153,18 @@ public class Truck : MonoBehaviour {
 	{
 		yield return new WaitForSeconds (2);
 		onLevelUIObject.GetComponent<Canvas> ().enabled = false;
-		//levelEndUI.GetComponent<Canvas> ().enabled = true;
+
+		if (win) 
+		{
+			Debug.Log("WIN");
+			missionWinUI.GetComponent<Canvas> ().enabled = true;
+			MissionWinUI missionWin = missionWinUI.GetComponent<MissionWinUI>();
+			missionWin.UpdateFields(onLevelUI.timeLeft);
+		} 
+		else 
+		{
+			missionLoseUI.GetComponent<Canvas> ().enabled = true;
+		}
 	}
 
 	IEnumerator testDrive () {
