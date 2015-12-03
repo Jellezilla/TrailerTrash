@@ -49,14 +49,21 @@ public class MissionWinUI : MonoBehaviour
 
 	public void UpdateFields(float timeLeft)
 	{
+		balanceLabel.text = "Average Tile:" + Mathf.Ceil (tiltSensor.GetAverageTilt ()).ToString ();
+		float halfOrder = orderPoints / 2;
+		float tiltMod = halfOrder / 35;
+
 		order.text = Mathf.Ceil(orderPoints).ToString ();
 		bonus.text = Mathf.Ceil((timeLeft*timeFactor)).ToString();
-		levelScore.text = Mathf.Ceil((orderPoints + (timeLeft*timeFactor))).ToString ();
-		GameConstants.totalScore += orderPoints + (timeLeft * timeFactor);
+		balance.text = Mathf.Ceil (halfOrder-((tiltSensor.GetAverageTilt ())*tiltMod)).ToString ();
+		levelScore.text = Mathf.Ceil((orderPoints + (timeLeft*timeFactor))+halfOrder-((tiltSensor.GetAverageTilt ())*tiltMod)).ToString ();
+		GameConstants.totalScore += orderPoints + (timeLeft * timeFactor)+Mathf.Ceil (halfOrder-((tiltSensor.GetAverageTilt ())*tiltMod));
+
 		totalScore.text = Mathf.Ceil(GameConstants.totalScore).ToString ();
 
-		balanceLabel.text = "Average Tile:" + Mathf.Ceil (tiltSensor.GetAverageTilt ()).ToString ();
-		balance.text = Mathf.Ceil ((1/tiltSensor.GetAverageTilt ())*1000).ToString ();
+
+
+
 		Debug.Log(tiltSensor.GetAverageTilt ());
 	}
 

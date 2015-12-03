@@ -3,6 +3,8 @@ using System.Collections;
 
 public class BaseCargo : MonoBehaviour 
 {
+	public Material tempBreak;
+
 	public int cargoHealth;
 	private bool cracked;
 
@@ -55,6 +57,9 @@ public class BaseCargo : MonoBehaviour
 				if(other.cargoHealth <= 0)
 				{
 					other.cracked = true;
+
+					other.gameObject.GetComponent<Renderer>().material = other.tempBreak;
+					Debug.Log(other.gameObject.GetComponent<Renderer>().material.name);
 				}
 			}
 		}
