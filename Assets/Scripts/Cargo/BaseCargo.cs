@@ -59,7 +59,6 @@ public class BaseCargo : MonoBehaviour
 					other.cracked = true;
 
 					other.gameObject.GetComponent<Renderer>().material = other.tempBreak;
-					Debug.Log(other.gameObject.GetComponent<Renderer>().material.name);
 				}
 			}
 		}
