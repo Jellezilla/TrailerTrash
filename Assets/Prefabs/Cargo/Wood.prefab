@@ -142,7 +142,7 @@ MonoBehaviour:
   cargoBag: {fileID: 0}
   collidedTrailer: 0
   collidedGround: 0
-  UISprite: {fileID: 21300000, guid: 9af85cc502721436dba602078e8a41eb, type: 3}
+  UISprite: {fileID: 21300000, guid: 311f65b14916c3641bc4db2ef0f61769, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -206,7 +206,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: UISprite
       value: 
-      objectReference: {fileID: 21300000, guid: 9af85cc502721436dba602078e8a41eb,
+      objectReference: {fileID: 21300000, guid: 311f65b14916c3641bc4db2ef0f61769,
         type: 3}
     - target: {fileID: 0}
       propertyPath: m_Mass

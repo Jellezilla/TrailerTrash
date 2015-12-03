@@ -52,8 +52,11 @@ public class Truck : MonoBehaviour {
 
 	public void SetActive(bool state)
 	{
-		active = true;
-		win = state;
+		if (!active) 
+		{
+			active = true;
+			win = state;
+		}
 	}
 
 	void FixedUpdate() {

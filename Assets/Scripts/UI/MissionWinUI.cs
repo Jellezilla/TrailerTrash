@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class MissionWinUI : MonoBehaviour 
 {
+	private int currentLevel;
+
 	private GameObject trailer;
 	private TiltSensor tiltSensor;
 
@@ -27,6 +29,8 @@ public class MissionWinUI : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		currentLevel = Application.loadedLevel;
+
 		orderObject = GameObject.Find ("Order");
 		bonusObject = GameObject.Find ("Bonus");
 		levelScoreObject = GameObject.Find ("LevelScore");
@@ -57,19 +61,14 @@ public class MissionWinUI : MonoBehaviour
 		bonus.text = Mathf.Ceil((timeLeft*timeFactor)).ToString();
 		balance.text = Mathf.Ceil (halfOrder-((tiltSensor.GetAverageTilt ())*tiltMod)).ToString ();
 		levelScore.text = Mathf.Ceil((orderPoints + (timeLeft*timeFactor))+halfOrder-((tiltSensor.GetAverageTilt ())*tiltMod)).ToString ();
-		GameConstants.totalScore += orderPoints + (timeLeft * timeFactor)+Mathf.Ceil (halfOrder-((tiltSensor.GetAverageTilt ())*tiltMod));
+		GameConstants.totalScore += Mathf.Ceil(orderPoints + (timeLeft * timeFactor)+(halfOrder-((tiltSensor.GetAverageTilt ())*tiltMod)));
 
 		totalScore.text = Mathf.Ceil(GameConstants.totalScore).ToString ();
-
-
-
-
-		Debug.Log(tiltSensor.GetAverageTilt ());
 	}
 
 	public void WinLevel()
 	{
-		Application.LoadLevel (Application.loadedLevel+1);
+		Application.LoadLevel (currentLevel+1);
 	}
 
 

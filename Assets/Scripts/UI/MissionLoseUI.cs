@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MissionLoseUI : MonoBehaviour {
-
+public class MissionLoseUI : MonoBehaviour 
+{
+	private int currentLevel;
 	// Use this for initialization
 	void Start () {
 	
@@ -15,6 +16,6 @@ public class MissionLoseUI : MonoBehaviour {
 
 	public void LoseLevel()
 	{
-		Application.LoadLevel (Application.loadedLevel);
+		Application.LoadLevel (currentLevel);
 	}
 }
