@@ -81,9 +81,11 @@ public class OnLevelUI : MonoBehaviour
 
 	public void WriteOrder(int woodNum, int woodOrder, int ironNum, int ironOrder, int glassNum, int glassOrder)
 	{
-		wood.text = woodNum.ToString () + "/" + woodOrder.ToString ();
-		iron.text = ironNum.ToString () + "/" + ironOrder.ToString ();
-		glass.text = glassNum.ToString () + "/" + glassOrder.ToString ();
-
+		if (wood != null && iron != null && glass != null) 
+		{
+			wood.text = woodNum.ToString () + "/" + woodOrder.ToString ();
+			iron.text = ironNum.ToString () + "/" + ironOrder.ToString ();
+			glass.text = glassNum.ToString () + "/" + glassOrder.ToString ();
+		}
 	}
 }

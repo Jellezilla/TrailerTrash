@@ -3,6 +3,9 @@ using System.Collections;
 
 public class AntiMatter : BaseCargo 
 {
+	private int kills = 0;
+	public int maxKills;
+
 	void Awake()
 	{
 		breakable = false;
@@ -21,11 +24,21 @@ public class AntiMatter : BaseCargo
 			BaseCargo other = collision.gameObject.GetComponent<BaseCargo>();
 			cargoBag.RemoveCargo(other.gameObject);
 			Destroy (other.gameObject);
+			kills++;
+			if(kills >= maxKills)
+			{
+				Selfdestruct();
+			}
 		}
 		if(collision.gameObject.name == "Trailer" || collision.gameObject.name == "Plane") //increase score if first collision
 		{
-			cargoBag.RemoveCargo(gameObject);
-			Destroy (gameObject);
+			Selfdestruct();
 		}
+	}
+
+	private void Selfdestruct()
+	{
+		cargoBag.RemoveCargo(gameObject);
+		Destroy (gameObject);
 	}
 }

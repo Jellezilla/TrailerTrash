@@ -1175,6 +1175,18 @@ Prefab:
       propertyPath: glassOrder
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 11458240, guid: 16b2b7c19f8cc184a9720cf90900ae42, type: 2}
+      propertyPath: ironOrder
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 11458240, guid: 16b2b7c19f8cc184a9720cf90900ae42, type: 2}
+      propertyPath: woodOrder
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 11458240, guid: 16b2b7c19f8cc184a9720cf90900ae42, type: 2}
+      propertyPath: glassOrder
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16b2b7c19f8cc184a9720cf90900ae42, type: 2}
   m_IsPrefabParent: 0
