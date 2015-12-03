@@ -3,6 +3,10 @@ using System.Collections;
 
 public class BaseCargo : MonoBehaviour 
 {
+	public GameObject collisionObject;
+	
+	private AudioSource collision;
+
 	public Material tempBreak;
 
 	public int cargoHealth;
@@ -23,6 +27,10 @@ public class BaseCargo : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		collisionObject = GameObject.Find ("Collision");;
+
+		collision = collisionObject.GetComponent<AudioSource>();
+
 		newCrane = (GameObject)GameObject.Find ("NewCrane");
 		cargoBag = newCrane.GetComponent<CargoBag>();
 
@@ -42,6 +50,7 @@ public class BaseCargo : MonoBehaviour
 	{
 		if(collision.gameObject.tag == "Cargo" && !collidedTrailer) //increase score if first collision
 		{
+			CollisionSound();
 			collidedTrailer = true;
 			cargoBag.AddCargoAndCheckOrder(gameObject);
 
@@ -64,6 +73,7 @@ public class BaseCargo : MonoBehaviour
 		}
 		if(collision.gameObject.name == "Trailer" && !collidedTrailer) //increase score if first collision
 		{
+			CollisionSound();
 			collidedTrailer = true;
 			cargoBag.AddCargoAndCheckOrder(gameObject);
 		}
@@ -73,5 +83,10 @@ public class BaseCargo : MonoBehaviour
 			cargoBag.RemoveCargo(gameObject);
 			Destroy (gameObject);
 		}
+	}
+
+	private void CollisionSound()
+	{
+		collision.Play ();
 	}
 }

@@ -16,6 +16,9 @@ public class MissionLoseUI : MonoBehaviour
 
 	public void LoseLevel()
 	{
+		GameObject buttonClickObject = GameObject.Find ("ButtonClick");
+		AudioSource buttonClick = buttonClickObject.GetComponent<AudioSource>();
+		buttonClick.Play ();
 		Application.LoadLevel (currentLevel);
 	}
 }

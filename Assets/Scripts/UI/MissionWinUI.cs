@@ -68,6 +68,9 @@ public class MissionWinUI : MonoBehaviour
 
 	public void WinLevel()
 	{
+		GameObject buttonClickObject = GameObject.Find ("ButtonClick");
+		AudioSource buttonClick = buttonClickObject.GetComponent<AudioSource>();
+		buttonClick.Play ();
 		Application.LoadLevel (currentLevel+1);
 	}
 
