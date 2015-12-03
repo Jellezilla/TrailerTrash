@@ -6,9 +6,11 @@ public class TiltSensor : MonoBehaviour
 {
 	public List<GameObject> edges = new List<GameObject>();
 
-	void FixedUpdate() {
+	void Update() 
+	{
 		//float modifier = GetTilt () * 100.0F;
 		//Debug.Log (modifier);
+		Debug.Log (GetTilt().ToString());
 	}
 	public float GetTilt()
 	{

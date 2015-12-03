@@ -156,7 +156,6 @@ public class Truck : MonoBehaviour {
 
 		if (win) 
 		{
-			Debug.Log("WIN");
 			missionWinUI.GetComponent<Canvas> ().enabled = true;
 			MissionWinUI missionWin = missionWinUI.GetComponent<MissionWinUI>();
 			missionWin.UpdateFields(onLevelUI.timeLeft);
