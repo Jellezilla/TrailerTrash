@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class CargoBag : MonoBehaviour 
 {
+	public bool conditionMet = false;
+
 	GameObject truckObject;
 	Truck truck;
 
@@ -67,15 +69,20 @@ public class CargoBag : MonoBehaviour
 	public void AddCargoAndCheckOrder(GameObject cargo)
 	{
 		trailer.Add (cargo);
+		CheckOrder ();
+	}
+
+	public void CheckOrder()
+	{
 		InspectTrailer ();
-
+		
 		tmpTrailer = new List<GameObject> ();
-
+		
 		foreach (GameObject go in trailer)
 		{
 			tmpTrailer.Add(go);
 		}
-
+		
 		int found = 0;
 		foreach(GameObject go in order)
 		{
@@ -89,10 +96,15 @@ public class CargoBag : MonoBehaviour
 				}
 			}
 		}
-		if (found == order.Count)
+		if (found == order.Count) 
 		{
-			truck.SetActive(true);
-		} 
+			conditionMet = true;
+			truck.SetActive (true);
+		}
+		else 
+		{
+			conditionMet = false;
+		}
 	}
 
 	private void InspectTrailer()
@@ -126,6 +138,7 @@ public class CargoBag : MonoBehaviour
 		{
 			trailer.Remove(cargo);
 			InspectTrailer();
+			conditionMet = false;
 		}
 	}
 

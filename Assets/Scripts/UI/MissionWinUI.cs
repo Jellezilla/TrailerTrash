@@ -66,6 +66,14 @@ public class MissionWinUI : MonoBehaviour
 		totalScore.text = Mathf.Ceil(GameConstants.totalScore).ToString ();
 	}
 
+	void Update()
+	{
+		if (Input.GetKeyDown (KeyCode.Space) && gameObject.GetComponent<Canvas>().enabled == true) 
+		{
+			WinLevel();
+		}
+	}
+
 	public void WinLevel()
 	{
 		GameObject soundObject = GameObject.Find("SoundSystem");

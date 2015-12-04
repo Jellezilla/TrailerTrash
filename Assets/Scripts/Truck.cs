@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Truck : MonoBehaviour 
 {
+	private bool checkMode = false;
+
 	//sound
 	GameObject truckDriveObject;
 	AudioSource truckDrive;
@@ -46,7 +48,8 @@ public class Truck : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if (active) {
+		if (active) 
+		{
 			StartCoroutine(StartEngine ());
 		}
 //		Debug.Log (rigid.velocity.magnitude);
@@ -57,17 +60,45 @@ public class Truck : MonoBehaviour
 	{
 		if (!active) 
 		{
+			GameObject cargoObject = GameObject.Find ("NewCrane");
+			CargoBag cargoBag = cargoObject.GetComponent<CargoBag>();
+			if(cargoBag.conditionMet)
+			{
+				StartCoroutine(WaitCheckMode());//win delay
+			}
+			else
+			{
+				truckDriveObject = GameObject.Find ("TruckDrive");
+				truckDrive = truckDriveObject.GetComponent<AudioSource>();
+				
+				truckHornObject = GameObject.Find ("TruckHorn");
+				truckHorn = truckHornObject.GetComponent<AudioSource>();
+				
+				truckDrive.Play ();
+				truckHorn.Play ();
+				active = true;
+			}
+			win = state;
+		}
+	}
+
+	IEnumerator WaitCheckMode()
+	{
+		yield return new WaitForSeconds (2f);
+		//check Win condition again
+		GameObject cargoObject = GameObject.Find ("NewCrane");
+		CargoBag cargoBag = cargoObject.GetComponent<CargoBag>();
+		if (cargoBag.conditionMet) 
+		{
 			truckDriveObject = GameObject.Find ("TruckDrive");
 			truckDrive = truckDriveObject.GetComponent<AudioSource>();
 			
 			truckHornObject = GameObject.Find ("TruckHorn");
 			truckHorn = truckHornObject.GetComponent<AudioSource>();
-
+			
 			truckDrive.Play ();
 			truckHorn.Play ();
-
 			active = true;
-			win = state;
 		}
 	}
 

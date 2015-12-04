@@ -34,9 +34,15 @@ public class OnLevelUI : MonoBehaviour
 	GameObject glassObject;
 	Text glass;
 
+	GameObject cargoObject;
+	CargoBag cargoBag;
+
 	// Use this for initialization
 	void Awake () 
 	{
+		cargoObject = GameObject.Find ("NewCrane");
+		cargoBag = cargoObject.GetComponent<CargoBag>();
+
 		missionWinObject = GameObject.Find ("MissionWinUI");
 		missionWinUI = missionWinObject.GetComponent<MissionWinUI>();
 
@@ -69,9 +75,10 @@ public class OnLevelUI : MonoBehaviour
 	void Update () 
 	{
 		timeLeft -= Time.deltaTime;
-		
-		if (timeLeft <= 0) 
+
+		if (timeLeft <= 0 && !cargoBag.conditionMet) 
 		{
+			Debug.Log(cargoBag.conditionMet);
 			timeLeft = 0;
 			truck.SetActive(false);
 		}

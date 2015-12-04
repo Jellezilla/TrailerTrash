@@ -11,8 +11,12 @@ public class MissionLoseUI : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void Update () 
+	{
+		if (Input.GetKeyDown (KeyCode.Space) && gameObject.GetComponent<Canvas>().enabled == true) 
+		{
+			LoseLevel();
+		}
 	}
 
 	public void LoseLevel()
