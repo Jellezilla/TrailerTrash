@@ -19,6 +19,9 @@ public class OnLevelUI : MonoBehaviour
 	GameObject timeObject;
 	private Text time;
 
+	GameObject levelObject;
+	private Text level;
+
 	GameObject nextObject;
 	private Text next;
 
@@ -50,6 +53,9 @@ public class OnLevelUI : MonoBehaviour
 		timeObject = GameObject.Find ("Time");
 		time = timeObject.GetComponent<Text>();
 
+		levelObject = GameObject.Find ("Level");
+		level = levelObject.GetComponent<Text>();
+
 		nextObject = GameObject.Find ("Next");
 		next = nextObject.GetComponent<Text>();
 
@@ -69,6 +75,8 @@ public class OnLevelUI : MonoBehaviour
 		timeLeft = maxTime;
 
 		tutorialObject = GameObject.Find ("Tutorial");
+
+		level.text = (Application.loadedLevel + 1).ToString();
 	}
 	
 	// Update is called once per frame
@@ -104,7 +112,7 @@ public class OnLevelUI : MonoBehaviour
 		{
 			if(woodNum >= woodOrder)
 			{
-				wood.text = "Completed";
+				wood.text = "Done";
 			}
 			else
 			{
@@ -113,7 +121,7 @@ public class OnLevelUI : MonoBehaviour
 
 			if(ironNum >= ironOrder)
 			{
-				iron.text = "Completed";
+				iron.text = "Done";
 			}
 			else
 			{
@@ -122,7 +130,7 @@ public class OnLevelUI : MonoBehaviour
 
 			if(glassNum >= glassOrder)
 			{
-				glass.text = "Completed";
+				glass.text = "Done";
 			}
 			else
 			{
