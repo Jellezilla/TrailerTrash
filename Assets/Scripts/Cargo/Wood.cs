@@ -12,4 +12,20 @@ public class Wood : BaseCargo
 	{	
 		base.CollisionHandler (collision);
 	}
+
+	public override void PlayCracked()
+	{
+		if (!truck.active)
+		{
+			crackedWood.Play ();
+		}
+	}
+	
+	public override void PlayDestroy()
+	{
+		if (!truck.active)
+		{
+			destoryedWood.Play ();
+		}
+	}
 }

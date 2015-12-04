@@ -10,7 +10,7 @@ public class CargoBag : MonoBehaviour
 	Truck truck;
 
 	private GameObject OnLevelUIObject;
-	private OnLevelUI OnLevelUI;
+	public OnLevelUI OnLevelUI;
 
 	private CargoController cargoController;
 	public int extraCargo;

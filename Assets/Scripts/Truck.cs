@@ -68,15 +68,15 @@ public class Truck : MonoBehaviour
 			}
 			else
 			{
+				active = true;
 				truckDriveObject = GameObject.Find ("TruckDrive");
 				truckDrive = truckDriveObject.GetComponent<AudioSource>();
 				
 				truckHornObject = GameObject.Find ("TruckHorn");
 				truckHorn = truckHornObject.GetComponent<AudioSource>();
-				
+				Debug.Log("Now playing sounds when losing");
 				truckDrive.Play ();
 				truckHorn.Play ();
-				active = true;
 			}
 			win = state;
 		}

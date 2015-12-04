@@ -3,6 +3,20 @@ using System.Collections;
 
 public class BaseCargo : MonoBehaviour 
 {
+	private GameObject truckObject;
+	public Truck truck;
+
+	//sounds
+	GameObject crackedGlassObject;
+	GameObject crackedWoodbject;
+	GameObject destroyedGlassObject;
+	GameObject destroyedWoodObject;
+
+	public AudioSource crackedGlass;
+	public AudioSource crackedWood;
+	public AudioSource destroyedGlass;
+	public AudioSource destoryedWood;
+
 	public GameObject collisionObject;
 	
 	private AudioSource collision;
@@ -27,7 +41,20 @@ public class BaseCargo : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		collisionObject = GameObject.Find ("Collision");;
+		truckObject = GameObject.Find ("Truck");
+		truck = truckObject.GetComponent<Truck>();
+
+		crackedGlassObject = GameObject.Find ("CrackedGlass");
+		crackedWoodbject = GameObject.Find ("CrackedWood");
+		destroyedGlassObject = GameObject.Find ("DestroyGlass");
+		destroyedWoodObject = GameObject.Find ("DestroyWood");
+
+		crackedGlass = crackedGlassObject.GetComponent<AudioSource>();
+		crackedWood = crackedWoodbject.GetComponent<AudioSource>();;
+		destroyedGlass = destroyedGlassObject.GetComponent<AudioSource>();;
+		destoryedWood = destroyedWoodObject.GetComponent<AudioSource>();;
+
+		collisionObject = GameObject.Find ("Collision");
 
 		collision = collisionObject.GetComponent<AudioSource>();
 
@@ -59,6 +86,7 @@ public class BaseCargo : MonoBehaviour
 				BaseCargo other = collision.gameObject.GetComponent<BaseCargo>();
 				if(other.cracked)
 				{
+					other.PlayDestroy();
 					cargoBag.RemoveCargo(other.gameObject);
 					Destroy (other.gameObject);
 				}
@@ -66,7 +94,7 @@ public class BaseCargo : MonoBehaviour
 				if(other.cargoHealth <= 0)
 				{
 					other.cracked = true;
-
+					other.PlayCracked();
 					other.gameObject.GetComponent<Renderer>().material = other.tempBreak;
 				}
 			}
@@ -79,6 +107,7 @@ public class BaseCargo : MonoBehaviour
 		}
 		if(collision.gameObject.name == "Plane" && !collidedGround && collidedTrailer) //decrase score if first collision
 		{
+			PlayDestroy();
 			collidedGround = true;
 			cargoBag.RemoveCargo(gameObject);
 			Destroy (gameObject);
@@ -88,5 +117,15 @@ public class BaseCargo : MonoBehaviour
 	private void CollisionSound()
 	{
 		collision.Play ();
+	}
+
+	public virtual void PlayCracked()
+	{
+
+	}
+
+	public virtual void PlayDestroy()
+	{
+
 	}
 }

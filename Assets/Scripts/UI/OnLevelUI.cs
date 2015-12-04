@@ -9,6 +9,7 @@ public class OnLevelUI : MonoBehaviour
 	private GameObject missionWinObject;
 	private MissionWinUI missionWinUI;
 
+	private bool timesUp = false;
 	public float maxTime = 30.0f;
 	public float timeLeft;
 	private Truck truck;
@@ -84,11 +85,14 @@ public class OnLevelUI : MonoBehaviour
 	{
 		timeLeft -= Time.deltaTime;
 
-		if (timeLeft <= 0 && !cargoBag.conditionMet) 
+		if (timeLeft <= 0 && !cargoBag.conditionMet && !timesUp) 
 		{
-			Debug.Log(cargoBag.conditionMet);
-			timeLeft = 0;
+			timesUp = true;
 			truck.SetActive(false);
+		}
+		if(timeLeft <= 0)
+		{
+			timeLeft = 0;
 		}
 		time.text = Mathf.Ceil(timeLeft).ToString ();
 

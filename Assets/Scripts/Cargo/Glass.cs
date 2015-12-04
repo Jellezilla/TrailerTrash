@@ -12,4 +12,20 @@ public class Glass : BaseCargo
 	{	
 		base.CollisionHandler (collision);
 	}
+
+	public override void PlayCracked()
+	{
+		if (!truck.active)
+		{
+			crackedGlass.Play ();
+		}
+	}
+
+	public override void PlayDestroy()
+	{
+		if (!truck.active)
+		{
+			destroyedGlass.Play ();
+		}
+	}
 }
