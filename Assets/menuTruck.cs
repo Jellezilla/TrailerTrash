@@ -10,7 +10,6 @@ public class menuTruck : MonoBehaviour {
 		speed = Random.Range (5.05f, 5.15f);
 		startX = transform.position.x;
 		rigid = transform.GetComponent<Rigidbody> ();
-		Debug.Log (speed);
 	}
 	
 	// Update is called once per frame
