@@ -136,11 +136,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f007161070962d438d7b15f2fdbad31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  truck: {fileID: 0}
+  crackedGlass: {fileID: 0}
+  crackedWood: {fileID: 0}
+  destroyedGlass: {fileID: 0}
+  destoryedWood: {fileID: 0}
   collisionObject: {fileID: 0}
   tempBreak: {fileID: 2100000, guid: d41cb305b2325e24eb9e18a0d3501181, type: 2}
   cargoHealth: 999
   breakable: 0
-  swingPower: 270
+  swingPower: 240
   weight: 15
   cargoBag: {fileID: 0}
   collidedTrailer: 0
@@ -171,7 +176,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: swingPower
-      value: 270
+      value: 240
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Material

@@ -51,7 +51,9 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -134,10 +136,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a43b216565dcb2946981233d82c099d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  truck: {fileID: 0}
+  crackedGlass: {fileID: 0}
+  crackedWood: {fileID: 0}
+  destroyedGlass: {fileID: 0}
+  destoryedWood: {fileID: 0}
+  collisionObject: {fileID: 0}
   tempBreak: {fileID: 2100000, guid: 198e30b6d7433d946aaed68617ef7485, type: 2}
   cargoHealth: 2
   breakable: 0
-  swingPower: 200
+  swingPower: 180
   weight: 15
   cargoBag: {fileID: 0}
   collidedTrailer: 0
@@ -168,7 +176,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: swingPower
-      value: 200
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Material
