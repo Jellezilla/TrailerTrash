@@ -1333,7 +1333,7 @@ MonoBehaviour:
   extraCargo: 1
   ironOrder: 1
   woodOrder: 1
-  glassOrder: 5
+  glassOrder: 1
   order: []
   bag: []
   tmpTrailer: []

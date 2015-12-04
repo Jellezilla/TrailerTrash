@@ -1,8 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Truck : MonoBehaviour {
-
+public class Truck : MonoBehaviour 
+{
+	//sound
+	GameObject truckDriveObject;
+	AudioSource truckDrive;
+	
+	GameObject truckHornObject;
+	AudioSource truckHorn;
 
 	GameObject trailer;
 	private float spd = 30.0F;
@@ -38,11 +44,8 @@ public class Truck : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		if (Input.GetKeyDown (KeyCode.U)) {
-
-			active = true;
-		}
+	void Update () 
+	{
 		if (active) {
 			StartCoroutine(StartEngine ());
 		}
@@ -54,6 +57,15 @@ public class Truck : MonoBehaviour {
 	{
 		if (!active) 
 		{
+			truckDriveObject = GameObject.Find ("TruckDrive");
+			truckDrive = truckDriveObject.GetComponent<AudioSource>();
+			
+			truckHornObject = GameObject.Find ("TruckHorn");
+			truckHorn = truckHornObject.GetComponent<AudioSource>();
+
+			truckDrive.Play ();
+			truckHorn.Play ();
+
 			active = true;
 			win = state;
 		}

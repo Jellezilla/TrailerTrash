@@ -1208,15 +1208,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11458240, guid: 16b2b7c19f8cc184a9720cf90900ae42, type: 2}
       propertyPath: ironOrder
-      value: 12
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11458240, guid: 16b2b7c19f8cc184a9720cf90900ae42, type: 2}
       propertyPath: woodOrder
-      value: 9
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11458240, guid: 16b2b7c19f8cc184a9720cf90900ae42, type: 2}
       propertyPath: glassOrder
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16b2b7c19f8cc184a9720cf90900ae42, type: 2}
@@ -3124,6 +3124,7 @@ GameObject:
   - 4: {fileID: 1952854018}
   - 54: {fileID: 1952854019}
   - 114: {fileID: 1952854020}
+  - 114: {fileID: 1952854021}
   m_Layer: 0
   m_Name: Trailer
   m_TagString: Trailer
@@ -3172,6 +3173,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99ec84f43cd10d243b5264c09692ff68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1952854021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1952854017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d834421241e7384aa95d615bf7ca940, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  edges:
+  - {fileID: 1669734232}
+  - {fileID: 1431941472}
+  degrees: []
 --- !u!1001 &2032581609
 Prefab:
   m_ObjectHideFlags: 0

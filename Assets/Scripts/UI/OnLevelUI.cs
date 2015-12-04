@@ -4,15 +4,6 @@ using UnityEngine.UI;
 
 public class OnLevelUI : MonoBehaviour 
 {
-	//sound
-	GameObject truckDriveObject;
-	AudioSource truckDrive;
-
-	bool playing = false;
-
-	GameObject truckHornObject;
-	AudioSource truckHorn;
-
 	bool firstSpace = true;
 
 	private GameObject missionWinObject;
@@ -46,12 +37,6 @@ public class OnLevelUI : MonoBehaviour
 	// Use this for initialization
 	void Awake () 
 	{
-		truckDriveObject = GameObject.Find ("TruckDrive");
-		truckDrive = truckDriveObject.GetComponent<AudioSource>();
-
-		truckHornObject = GameObject.Find ("TruckHorn");
-		truckHorn = truckHornObject.GetComponent<AudioSource>();
-
 		missionWinObject = GameObject.Find ("MissionWinUI");
 		missionWinUI = missionWinObject.GetComponent<MissionWinUI>();
 
@@ -89,12 +74,6 @@ public class OnLevelUI : MonoBehaviour
 		{
 			timeLeft = 0;
 			truck.SetActive(false);
-		}
-		if(timeLeft <= 1 && !playing)
-		{
-			playing = true;
-			truckDrive.Play ();
-			truckHorn.Play ();
 		}
 		time.text = Mathf.Ceil(timeLeft).ToString ();
 
