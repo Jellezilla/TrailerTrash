@@ -5,8 +5,9 @@ public class MissionLoseUI : MonoBehaviour
 {
 	private int currentLevel;
 	// Use this for initialization
-	void Start () {
-	
+	void Start () 
+	{
+		currentLevel = Application.loadedLevel;
 	}
 	
 	// Update is called once per frame
