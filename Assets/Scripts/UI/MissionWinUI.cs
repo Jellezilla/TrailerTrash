@@ -68,6 +68,10 @@ public class MissionWinUI : MonoBehaviour
 
 	public void WinLevel()
 	{
+		GameObject soundObject = GameObject.Find("SoundSystem");
+		SoundSystem soundSystem = soundObject.GetComponent<SoundSystem>();
+		soundSystem.Save();
+
 		GameObject buttonClickObject = GameObject.Find ("ButtonClick");
 		AudioSource buttonClick = buttonClickObject.GetComponent<AudioSource>();
 		buttonClick.Play ();

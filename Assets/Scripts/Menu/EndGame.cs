@@ -14,6 +14,9 @@ public class EndGame : MonoBehaviour {
 	{
 		if (Input.GetKeyDown (KeyCode.Escape)) 
 		{
+			GameObject buttonClickObject = GameObject.Find ("ButtonClick");
+			AudioSource buttonClick = buttonClickObject.GetComponent<AudioSource>();
+			buttonClick.Play ();
 			Application.Quit();
 		}
 	}

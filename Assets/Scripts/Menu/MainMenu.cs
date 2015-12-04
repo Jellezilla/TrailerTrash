@@ -16,6 +16,13 @@ public class MainMenu : MonoBehaviour
 	{
 		if (Input.GetKeyDown (KeyCode.Space)) 
 		{
+			GameObject soundObject = GameObject.Find("SoundSystem");
+			SoundSystem soundSystem = soundObject.GetComponent<SoundSystem>();
+			soundSystem.Save();
+
+			GameObject buttonClickObject = GameObject.Find ("ButtonClick");
+			AudioSource buttonClick = buttonClickObject.GetComponent<AudioSource>();
+			buttonClick.Play ();
 			Application.LoadLevel(startLevel);
 		}
 	}
