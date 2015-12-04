@@ -7,15 +7,16 @@ public class menuTruck : MonoBehaviour {
 	Rigidbody rigid;
 	// Use this for initialization
 	void Start () {
-		speed = Random.Range (10.05f, 18.15f);
+		speed = Random.Range (5.05f, 5.15f);
 		startX = transform.position.x;
 		rigid = transform.GetComponent<Rigidbody> ();
+		Debug.Log (speed);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		rigid.AddForce ((Vector3.right *speed * Time.deltaTime), ForceMode.Force);
+		rigid.AddForce ((Vector3.right *speed), ForceMode.Force);
 		//transform.position = new Vector3 ((transform.position.x + rand), transform.position.y, transform.position.z);
 
 		if (transform.position.x > 15.0f) {
