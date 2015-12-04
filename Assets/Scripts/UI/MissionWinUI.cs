@@ -53,7 +53,7 @@ public class MissionWinUI : MonoBehaviour
 
 	public void UpdateFields(float timeLeft)
 	{
-		balanceLabel.text = "Average Tile:" + Mathf.Ceil (tiltSensor.GetAverageTilt ()).ToString ();
+		balanceLabel.text = "Average tilt was " + Mathf.Ceil (tiltSensor.GetAverageTilt ()).ToString () + " degress";
 		float halfOrder = orderPoints / 2;
 		float tiltMod = halfOrder / 35;
 
