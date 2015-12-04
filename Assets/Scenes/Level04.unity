@@ -227,7 +227,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 390960431}
-  - 54: {fileID: 390960432}
   - 114: {fileID: 390960433}
   m_Layer: 0
   m_Name: Truck
@@ -257,21 +256,6 @@ Transform:
   - {fileID: 1025720805}
   m_Father: {fileID: 0}
   m_RootOrder: 3
---- !u!54 &390960432
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 390960430}
-  serializedVersion: 2
-  m_Mass: 30
-  m_Drag: .5
-  m_AngularDrag: .0500000007
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!114 &390960433
 MonoBehaviour:
   m_ObjectHideFlags: 0

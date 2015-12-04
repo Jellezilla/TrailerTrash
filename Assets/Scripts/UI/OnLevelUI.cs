@@ -95,9 +95,32 @@ public class OnLevelUI : MonoBehaviour
 	{
 		if (wood != null && iron != null && glass != null) 
 		{
-			wood.text = woodNum.ToString () + "/" + woodOrder.ToString ();
-			iron.text = ironNum.ToString () + "/" + ironOrder.ToString ();
-			glass.text = glassNum.ToString () + "/" + glassOrder.ToString ();
+			if(woodNum >= woodOrder)
+			{
+				wood.text = "Completed";
+			}
+			else
+			{
+				wood.text = woodNum.ToString () + "/" + woodOrder.ToString ();
+			}
+
+			if(ironNum >= ironOrder)
+			{
+				iron.text = "Completed";
+			}
+			else
+			{
+				iron.text = ironNum.ToString () + "/" + ironOrder.ToString ();
+			}
+
+			if(glassNum >= glassOrder)
+			{
+				glass.text = "Completed";
+			}
+			else
+			{
+				glass.text = glassNum.ToString () + "/" + glassOrder.ToString ();
+			}
 		}
 	}
 }
