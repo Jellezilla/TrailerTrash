@@ -38,6 +38,12 @@ public class CargoBag : MonoBehaviour
 
 		cargoController = GetComponent<CargoController>();
 
+		StartCoroutine (WaitStartInspect());
+	}
+
+	IEnumerator WaitStartInspect()
+	{
+		yield return new WaitForSeconds (0.01f);
 		InspectTrailer ();
 	}
 

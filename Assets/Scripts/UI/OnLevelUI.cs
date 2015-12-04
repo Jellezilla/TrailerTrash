@@ -112,6 +112,7 @@ public class OnLevelUI : MonoBehaviour
 
 	public void WriteOrder(int woodNum, int woodOrder, int ironNum, int ironOrder, int glassNum, int glassOrder)
 	{
+		Debug.Log (wood.name);
 		if (wood != null && iron != null && glass != null) 
 		{
 			if(woodNum >= woodOrder)

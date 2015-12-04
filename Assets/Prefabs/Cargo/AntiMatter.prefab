@@ -43,7 +43,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0e7fee72fb06c254a9da2f8190b84296, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -134,6 +134,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 963a14feee0afdc4ba88fdd602f6e3db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  truck: {fileID: 0}
+  crackedGlass: {fileID: 0}
+  crackedWood: {fileID: 0}
+  destroyedGlass: {fileID: 0}
+  destoryedWood: {fileID: 0}
   collisionObject: {fileID: 0}
   tempBreak: {fileID: 2100000, guid: d41cb305b2325e24eb9e18a0d3501181, type: 2}
   cargoHealth: 0
@@ -230,6 +235,10 @@ Prefab:
       propertyPath: tempBreak
       value: 
       objectReference: {fileID: 2100000, guid: d41cb305b2325e24eb9e18a0d3501181, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0e7fee72fb06c254a9da2f8190b84296, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 150710}
