@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MainMenu : MonoBehaviour 
 {
-	private int startLevel = 0;
+	private int startLevel = 1;
 
 	// Use this for initialization
 	void Start () 
