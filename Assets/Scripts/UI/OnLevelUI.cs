@@ -83,7 +83,7 @@ public class OnLevelUI : MonoBehaviour
 
 		tutorialObject = GameObject.Find ("Tutorial");
 
-		level.text = (Application.loadedLevel + 1).ToString();
+		level.text = (Application.loadedLevel).ToString();
 	}
 	
 	// Update is called once per frame

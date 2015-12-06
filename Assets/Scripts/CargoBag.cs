@@ -184,11 +184,11 @@ public class CargoBag : MonoBehaviour
 				bag.Add(cargoController.cargoList[2]);
 			}
 		}
-		if(Application.loadedLevel == 3)
+		if(Application.loadedLevel == 4)
 		{
 			bag.Add(cargoController.cargoList[3]);
 		}
-		if(Application.loadedLevel == 4)
+		if(Application.loadedLevel == 5)
 		{
 			bag.Add(cargoController.cargoList[3]);
 			bag.Add(cargoController.cargoList[3]);
